@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>India Election Live — ECI Official</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0c0c0c;--bg2:#141414;--bg3:#1c1c1c;--bg4:#242424;
+  --border:#2a2a2a;--border2:#383838;
+  --text:#f0ede6;--text2:#a09c93;--text3:#5a5752;
+  --accent:#ff3d00;--accent2:#00b4d8;--gold:#f5a623;
+  --green:#22c55e;--red:#ef4444;--purple:#a78bfa;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
+
+/* ── TICKER ── */
+.ticker{background:var(--accent);color:#fff;padding:5px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 30s linear infinite}
+.ticker-inner:hover{animation-play-state:paused}
+@keyframes tick{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+.ticker-sep{margin:0 24px;opacity:.5}
+
+/* ── HEADER ── */
+.header{border-bottom:1px solid var(--border2);padding:0}
+.header-top{display:flex;align-items:stretch;justify-content:space-between;padding:16px 20px;gap:16px}
+.brand{display:flex;flex-direction:column;gap:4px}
+.brand-eye{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.2em;text-transform:uppercase}
+.brand-name{font-family:var(--mono);font-size:clamp(20px,5vw,38px);font-weight:700;line-height:1;letter-spacing:-.03em}
+.brand-name .hi{color:var(--accent)}
+.brand-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;justify-content:space-between}
+.live-badge{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:6px 14px;border-radius:2px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em}
+.ld{width:7px;height:7px;background:#fff;border-radius:50%;animation:lb 1s infinite}
+@keyframes lb{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+.header-ts{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.header-ts span{color:var(--accent2)}
+
+/* ── NAV ── */
+.nav{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border2);overflow-x:auto;scrollbar-width:none;background:var(--bg2)}
+.nav::-webkit-scrollbar{display:none}
+.nav-item{padding:10px 18px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);cursor:pointer;white-space:nowrap;border-right:1px solid var(--border);transition:all .15s;flex-shrink:0}
+.nav-item:hover{color:var(--text);background:var(--bg3)}
+.nav-item.on{color:var(--accent);border-bottom:2px solid var(--accent);background:var(--bg3)}
+
+/* ── LAYOUT ── */
+.shell{display:grid;grid-template-columns:1fr 320px;min-height:calc(100vh - 130px)}
+@media(max-width:740px){.shell{grid-template-columns:1fr}}
+.main{border-right:1px solid var(--border)}
+@media(max-width:740px){.main{border-right:none}}
+.aside{background:var(--bg2)}
+
+/* ── SECTION LABEL ── */
+.sec-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.sec-bar-l{display:flex;align-items:center;gap:8px}
+.sec-kicker{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3)}
+.sec-title{font-size:13px;font-weight:600;color:var(--text)}
+.sec-btn{font-family:var(--mono);font-size:9px;color:var(--accent2);border:1px solid var(--accent2);background:none;padding:4px 10px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;border-radius:2px;transition:all .15s}
+.sec-btn:hover{background:var(--accent2);color:#000}
+.sec-btn.spinning span{display:inline-block;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SUMMARY STATS ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+@media(max-width:500px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:14px 16px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-val{font-family:var(--mono);font-size:22px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.stat-lbl{font-size:10px;color:var(--text3);margin-top:4px;font-family:var(--mono);letter-spacing:.04em}
+.stat-sub{font-size:10px;color:var(--accent2);margin-top:3px;font-weight:600}
+
+/* ── ACTIVE ELECTIONS STRIP ── */
+.active-strip{display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;background:var(--bg3)}
+.active-strip::-webkit-scrollbar{display:none}
+.as-item{padding:10px 16px;border-right:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:2px;flex-shrink:0;transition:background .15s}
+.as-item:hover,.as-item.on{background:var(--bg4)}
+.as-item.on .as-state{color:var(--accent)}
+.as-state{font-family:var(--mono);font-size:12px;font-weight:700}
+.as-meta{font-size:10px;color:var(--text3)}
+.as-pct{font-size:10px;color:var(--accent2);font-family:var(--mono)}
+
+/* ── STATE CARD ── */
+.state-section{padding:18px 16px;border-bottom:1px solid var(--border)}
+.ss-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.ss-name{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.ss-type{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
+.ss-chips{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.chip{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:2px;letter-spacing:.08em;font-weight:700;text-transform:uppercase}
+.chip-live{background:#ff3d0022;color:var(--accent);border:1px solid #ff3d0044}
+.chip-done{background:#22c55e22;color:var(--green);border:1px solid #22c55e44}
+.chip-major{background:#f5a62322;color:var(--gold);border:1px solid #f5a62344}
+
+/* Progress arc */
+.ss-progress{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:10px 12px;background:var(--bg3);border-radius:4px;border:1px solid var(--border)}
+.prog-arc{position:relative;width:48px;height:48px;flex-shrink:0}
+.prog-svg{width:48px;height:48px;transform:rotate(-90deg)}
+.prog-bg{fill:none;stroke:var(--border2);stroke-width:4}
+.prog-fill{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+.prog-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700}
+.prog-info{flex:1}
+.prog-title{font-size:12px;font-weight:600;margin-bottom:3px}
+.prog-detail{font-family:var(--mono);font-size:10px;color:var(--text3)}
+
+/* Party bars */
+.party-table{width:100%;margin-bottom:12px}
+.pt-row{display:grid;grid-template-columns:52px 1fr 36px 28px 28px;gap:6px;align-items:center;margin-bottom:6px}
+.pt-party{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.02em}
+.pt-bar-wrap{position:relative;height:18px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.pt-bar{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.4,0,.2,1);position:relative;display:flex;align-items:center;justify-content:flex-end;padding-right:4px}
+.pt-bar-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9);white-space:nowrap}
+.pt-total{font-family:var(--mono);font-size:11px;font-weight:700;text-align:right}
+.pt-won{font-family:var(--mono);font-size:9px;color:var(--green);text-align:right}
+.pt-lead{font-family:var(--mono);font-size:9px;color:var(--accent2);text-align:right}
+.pt-hdr{display:grid;grid-template-columns:52px 1fr 36px 28px 28px;gap:6px;margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.pt-hdr span{font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;text-align:right}
+.pt-hdr span:nth-child(2){text-align:left}
+
+/* Majority bar */
+.maj-section{padding:8px 0 2px;border-top:1px solid var(--border);margin-top:4px}
+.maj-bar-wrap{position:relative;height:8px;background:var(--bg3);border-radius:4px;overflow:visible;margin:6px 0 4px}
+.maj-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent2),#0077b6);transition:width .7s ease}
+.maj-needle{position:absolute;top:-4px;width:3px;height:16px;background:var(--gold);border-radius:2px;transform:translateX(-50%)}
+.maj-needle::after{content:'MAJ';position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:7px;color:var(--gold);white-space:nowrap;letter-spacing:.06em}
+.maj-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--text3)}
+
+/* Alliance blocks */
+.alliance-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.alliance-block{flex:1;min-width:100px;padding:8px 10px;background:var(--bg3);border-radius:4px;border:1px solid var(--border)}
+.ab-name{font-family:var(--mono);font-size:8px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ab-seats{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1}
+.ab-parties{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ── SIDEBAR ── */
+.sb-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:0}
+.sb-stat{background:var(--bg2);padding:12px 14px}
+.sb-stat-val{font-family:var(--mono);font-size:18px;font-weight:700;letter-spacing:-.02em}
+.sb-stat-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+.sb-stat-sub{font-family:var(--mono);font-size:9px;color:var(--accent2);margin-top:2px}
+
+/* National party chart */
+.nat-chart{padding:14px 16px;border-bottom:1px solid var(--border)}
+.nat-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.nat-party{font-family:var(--mono);font-size:10px;font-weight:700;min-width:44px}
+.nat-bar{flex:1;height:14px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.nat-fill{height:100%;border-radius:2px;transition:width .7s ease}
+.nat-seats{font-family:var(--mono);font-size:10px;min-width:28px;text-align:right}
+
+/* Search */
+.sb-search{border-bottom:1px solid var(--border)}
+.sb-search input{width:100%;padding:11px 14px;background:var(--bg2);border:none;color:var(--text);font-family:var(--sans);font-size:13px;border-bottom:1px solid var(--border);outline:none}
+.sb-search input::placeholder{color:var(--text3)}
+.sb-search input:focus{border-bottom-color:var(--accent2)}
+.sb-pills{display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.sb-pill{font-family:var(--mono);font-size:8px;padding:4px 8px;border:1px solid var(--border2);border-radius:2px;cursor:pointer;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;transition:all .12s}
+.sb-pill:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* News */
+.news-item{padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.news-item:hover{background:var(--bg3)}
+.ni-kicker{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:3px}
+.ni-title{font-size:12px;font-weight:600;line-height:1.45;margin-bottom:3px}
+.ni-snip{font-size:11px;color:var(--text3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ── UTILS ── */
+.sk{background:var(--bg3);border-radius:3px;animation:sk 1.2s infinite}
+@keyframes sk{0%,100%{opacity:.3}50%{opacity:.8}}
+.ph{padding:40px 20px;text-align:center;color:var(--text3);font-size:13px;line-height:1.8}
+.err-box{margin:12px 16px;padding:10px 14px;background:#ff3d0011;border:1px solid #ff3d0033;border-radius:4px;color:var(--accent);font-size:12px}
+
+/* ── DONUT ── */
+.donut-wrap{display:flex;align-items:center;justify-content:center;padding:14px 16px 10px;border-bottom:1px solid var(--border);gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    ⚡ INDIA ELECTION LIVE &nbsp;
+    <span class="ticker-sep">|</span> Tamil Nadu: TVK Leading 109 · ADMK 55 · DMK 49
+    <span class="ticker-sep">|</span> West Bengal: BJP Leading 188 · TMC 94
+    <span class="ticker-sep">|</span> Assam: BJP Leading 79 · INC 24
+    <span class="ticker-sep">|</span> Kerala: INC Leading 62 · CPI(M) 26 · IUML 23
+    <span class="ticker-sep">|</span> Puducherry: AINRC Leading 9 · BJP 2
+    <span class="ticker-sep">|</span> Source: Election Commission of India — results.eci.gov.in
+    <span class="ticker-sep">|</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-eye">Official Source: Election Commission of India</div>
+      <div class="brand-name">INDIA<br><span class="hi">ELECTION</span> LIVE</div>
+      <div class="brand-sub">Real-time results · All states · All election types</div>
+    </div>
+    <div class="header-right">
+      <div class="live-badge"><div class="ld"></div>LIVE ECI</div>
+      <div class="header-ts">Updated: <span id="masterTs">Loading...</span></div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--text3)" id="eciSrc">results.eci.gov.in</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-item on" data-etype="May2026Gen" onclick="setElection(this,'May2026Gen')">May 2026 — Assembly</div>
+  <div class="nav-item" data-etype="May2026Bye" onclick="setElection(this,'May2026Bye')">May 2026 — By-poll</div>
+  <div class="nav-item" data-etype="Feb2025" onclick="setElection(this,'Feb2025')">Feb 2025 — Delhi</div>
+  <div class="nav-item" data-etype="Nov2024" onclick="setElection(this,'Nov2024')">Nov 2024 — Assembly</div>
+  <div class="nav-item" data-etype="LS2024" onclick="setElection(this,'LS2024')">Lok Sabha 2024</div>
+</div>
+
+<!-- SHELL -->
+<div class="shell">
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- Summary Stats -->
+    <div class="stat-row" id="statRow">
+      <div class="stat"><div class="stat-val sk" style="height:28px;width:50px;margin-bottom:6px"></div><div class="stat-lbl">States counting</div></div>
+      <div class="stat"><div class="stat-val sk" style="height:28px;width:60px;margin-bottom:6px"></div><div class="stat-lbl">Total seats</div></div>
+      <div class="stat"><div class="stat-val sk" style="height:28px;width:60px;margin-bottom:6px"></div><div class="stat-lbl">Results declared</div></div>
+      <div class="stat"><div class="stat-val sk" style="height:28px;width:80px;margin-bottom:6px"></div><div class="stat-lbl">Leading party</div></div>
+    </div>
+
+    <!-- Active elections strip -->
+    <div class="active-strip" id="activeStrip">
+      <div class="as-item on"><div class="as-state sk" style="height:14px;width:80px"></div><div class="as-meta sk" style="height:10px;width:60px;margin-top:4px"></div></div>
+    </div>
+
+    <!-- ECI Notice bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#00b4d811;border-bottom:1px solid #00b4d822">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--accent2);letter-spacing:.08em">⚡ SOURCE: ELECTION COMMISSION OF INDIA — results.eci.gov.in</div>
+      <button class="sec-btn" id="refreshBtn" onclick="loadData()"><span>↻</span> REFRESH</button>
+    </div>
+
+    <!-- State results -->
+    <div id="stateResults">
+      <div class="ph">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="sk" style="height:150px;border-radius:4px"></div>
+          <div class="sk" style="height:150px;border-radius:4px"></div>
+          <div class="sk" style="height:150px;border-radius:4px"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- ASIDE -->
+  <div class="aside">
+
+    <!-- National party totals chart -->
+    <div class="sec-bar">
+      <div class="sec-bar-l"><span class="sec-kicker">National</span><span class="sec-title">Party totals</span></div>
+    </div>
+    <div class="nat-chart" id="natChart">
+      <div class="sk" style="height:100px"></div>
+    </div>
+
+    <!-- Sidebar Stats -->
+    <div class="sec-bar">
+      <div class="sec-bar-l"><span class="sec-kicker">Stats</span><span class="sec-title">Election snapshot</span></div>
+    </div>
+    <div class="sb-stat-grid" id="sbStats">
+      <div class="sb-stat"><div class="sb-stat-val sk" style="height:22px;width:50px"></div><div class="sb-stat-lbl">States</div></div>
+      <div class="sb-stat"><div class="sb-stat-val sk" style="height:22px;width:50px"></div><div class="sb-stat-lbl">Seats</div></div>
+      <div class="sb-stat"><div class="sb-stat-val sk" style="height:22px;width:50px"></div><div class="sb-stat-lbl">Declared</div></div>
+      <div class="sb-stat"><div class="sb-stat-val sk" style="height:22px;width:50px"></div><div class="sb-stat-lbl">Pending</div></div>
+    </div>
+
+    <!-- Search -->
+    <div class="sec-bar" style="margin-top:0"><div class="sec-bar-l"><span class="sec-title">Search news</span></div></div>
+    <div class="sb-search">
+      <input type="text" id="si" placeholder="State, party, constituency..."/>
+    </div>
+    <div class="sb-pills">
+      <div class="sb-pill" onclick="qs('Tamil Nadu TVK ADMK DMK election 2026')">Tamil Nadu</div>
+      <div class="sb-pill" onclick="qs('West Bengal BJP TMC election 2026')">West Bengal</div>
+      <div class="sb-pill" onclick="qs('Assam BJP INC election 2026')">Assam</div>
+      <div class="sb-pill" onclick="qs('Kerala INC CPM election 2026')">Kerala</div>
+      <div class="sb-pill" onclick="qs('India assembly election results 2026')">All results</div>
+      <div class="sb-pill" onclick="qs('India election winner today')">Winners</div>
+    </div>
+
+    <!-- News -->
+    <div class="sec-bar">
+      <div class="sec-bar-l"><span class="sec-title">Latest articles</span></div>
+      <button class="sec-btn" onclick="loadNews()">↻</button>
+    </div>
+    <div id="newsBox"><div class="ph" style="padding:20px">Loading...</div></div>
+
+  </div><!-- /aside -->
+</div><!-- /shell -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ─────────────────────────────────────────────────────────────────────────
+// ELECTION DATABASE — embedded from ECI official data (web-fetched earlier)
+// Updated May 04 2026 — results.eci.gov.in
+// ─────────────────────────────────────────────────────────────────────────
+const DB = {
+  May2026Gen: {
+    label:'Assembly General Elections — May 2026',
+    eciUrl:'https://results.eci.gov.in/ResultAcGenMay2026/index.htm',
+    lastUpdated:'01:21 PM, 04/05/2026',
+    states:[
+      { name:'Tamil Nadu', total:234, counted:224, majority:118,
+        parties:[
+          {abbr:'TVK', full:'Tamilaga Vettri Kazhagam', won:0, leading:109, color:'#7c3aed'},
+          {abbr:'ADMK', full:'All India Anna DMK', won:0, leading:55, color:'#16a34a'},
+          {abbr:'DMK', full:'Dravida Munnetra Kazhagam', won:0, leading:49, color:'#b91c1c'},
+          {abbr:'PMK', full:'Pattali Makkal Katchi', won:0, leading:5, color:'#d97706'},
+          {abbr:'INC', full:'Indian National Congress', won:0, leading:4, color:'#3b82f6'},
+          {abbr:'CPI', full:'Communist Party of India', won:0, leading:3, color:'#ef4444'},
+          {abbr:'IUML', full:'Indian Union Muslim League', won:0, leading:2, color:'#0891b2'},
+          {abbr:'OTH', full:'Others', won:0, leading:7, color:'#6b7280'},
+        ]
+      },
+      { name:'West Bengal', total:294, counted:287, majority:148,
+        parties:[
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:0, leading:188, color:'#f97316'},
+          {abbr:'TMC', full:'All India Trinamool Congress', won:0, leading:94, color:'#7c3aed'},
+          {abbr:'AJUP', full:'All Jharkhand Students Union', won:0, leading:2, color:'#0891b2'},
+          {abbr:'AISF', full:'All India Students Federation', won:0, leading:2, color:'#ef4444'},
+          {abbr:'CPI(M)', full:'Communist Party India (M)', won:0, leading:1, color:'#dc2626'},
+        ]
+      },
+      { name:'Assam', total:126, counted:124, majority:64,
+        parties:[
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:0, leading:79, color:'#f97316'},
+          {abbr:'INC', full:'Indian National Congress', won:0, leading:24, color:'#3b82f6'},
+          {abbr:'BOPF', full:'Bodoland Peoples Front', won:0, leading:10, color:'#8b5cf6'},
+          {abbr:'AGP', full:'Asom Gana Parishad', won:0, leading:9, color:'#65a30d'},
+          {abbr:'AIUDF', full:'All India United Democratic Front', won:0, leading:2, color:'#c026d3'},
+        ]
+      },
+      { name:'Kerala', total:140, counted:127, majority:71,
+        parties:[
+          {abbr:'INC', full:'Indian National Congress', won:1, leading:61, color:'#3b82f6'},
+          {abbr:'CPI(M)', full:'Communist Party India (M)', won:1, leading:25, color:'#dc2626'},
+          {abbr:'IUML', full:'Indian Union Muslim League', won:0, leading:23, color:'#0891b2'},
+          {abbr:'CPI', full:'Communist Party of India', won:0, leading:9, color:'#ef4444'},
+          {abbr:'KEC', full:'Kerala Congress', won:0, leading:7, color:'#d97706'},
+          {abbr:'OTH', full:'Others', won:0, leading:8, color:'#6b7280'},
+        ]
+      },
+      { name:'Puducherry', total:30, counted:16, majority:16,
+        parties:[
+          {abbr:'AINRC', full:'All India NR Congress', won:4, leading:5, color:'#f59e0b'},
+          {abbr:'IND', full:'Independent', won:0, leading:3, color:'#6b7280'},
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:1, leading:1, color:'#f97316'},
+          {abbr:'INC', full:'Indian National Congress', won:1, leading:0, color:'#3b82f6'},
+          {abbr:'ADMK', full:'Anna Dravida Munnetra Kazhagam', won:1, leading:0, color:'#16a34a'},
+        ]
+      }
+    ]
+  },
+  May2026Bye: {
+    label:'By-elections — May 2026',
+    eciUrl:'https://results.eci.gov.in/ResultAcByeMay2026/index.htm',
+    lastUpdated:'04/05/2026',
+    states:[]
+  },
+  Feb2025: {
+    label:'Delhi Assembly — February 2025',
+    eciUrl:'https://results.eci.gov.in/ResultAcGenFeb2025/index.htm',
+    lastUpdated:'Feb 2025 — Final',
+    states:[
+      { name:'Delhi', total:70, counted:70, majority:36,
+        parties:[
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:48, leading:0, color:'#f97316'},
+          {abbr:'AAP', full:'Aam Aadmi Party', won:22, leading:0, color:'#22c55e'},
+          {abbr:'INC', full:'Indian National Congress', won:0, leading:0, color:'#3b82f6'},
+          {abbr:'OTH', full:'Others', won:0, leading:0, color:'#6b7280'},
+        ]
+      }
+    ]
+  },
+  Nov2024: {
+    label:'Assembly Elections — November 2024',
+    eciUrl:'https://results.eci.gov.in/ResultAcGenNov2024/index.htm',
+    lastUpdated:'Nov 2024 — Final',
+    states:[
+      { name:'Maharashtra', total:288, counted:288, majority:145,
+        parties:[
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:132, leading:0, color:'#f97316'},
+          {abbr:'SS(S)', full:'Shiv Sena (Shinde)', won:57, leading:0, color:'#d97706'},
+          {abbr:'NCP(A)', full:'NCP (Ajit Pawar)', won:41, leading:0, color:'#8b5cf6'},
+          {abbr:'INC', full:'Indian National Congress', won:37, leading:0, color:'#3b82f6'},
+          {abbr:'SS(UBT)', full:'Shiv Sena (UBT)', won:20, leading:0, color:'#a21caf'},
+          {abbr:'NCP', full:'NCP (Sharad Pawar)', won:10, leading:0, color:'#0891b2'},
+          {abbr:'OTH', full:'Others', won:11, leading:0, color:'#6b7280'},
+        ]
+      },
+      { name:'Jharkhand', total:81, counted:81, majority:41,
+        parties:[
+          {abbr:'JMM', full:'Jharkhand Mukti Morcha', won:34, leading:0, color:'#16a34a'},
+          {abbr:'INC', full:'Indian National Congress', won:16, leading:0, color:'#3b82f6'},
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:21, leading:0, color:'#f97316'},
+          {abbr:'RJD', full:'Rashtriya Janata Dal', won:4, leading:0, color:'#c026d3'},
+          {abbr:'OTH', full:'Others', won:6, leading:0, color:'#6b7280'},
+        ]
+      }
+    ]
+  },
+  LS2024: {
+    label:'Lok Sabha General Election — 2024',
+    eciUrl:'https://results.eci.gov.in/ResultGE2024/index.htm',
+    lastUpdated:'June 2024 — Final',
+    states:[
+      { name:'India (Lok Sabha)', total:543, counted:543, majority:272,
+        parties:[
+          {abbr:'BJP', full:'Bharatiya Janata Party', won:240, leading:0, color:'#f97316'},
+          {abbr:'INC', full:'Indian National Congress', won:99, leading:0, color:'#3b82f6'},
+          {abbr:'SP', full:'Samajwadi Party', won:37, leading:0, color:'#ea580c'},
+          {abbr:'TMC', full:'Trinamool Congress', won:29, leading:0, color:'#7c3aed'},
+          {abbr:'DMK', full:'Dravida Munnetra Kazhagam', won:22, leading:0, color:'#b91c1c'},
+          {abbr:'TDP', full:'Telugu Desam Party', won:16, leading:0, color:'#0891b2'},
+          {abbr:'JDU', full:'Janata Dal United', won:12, leading:0, color:'#65a30d'},
+          {abbr:'OTH', full:'Others', won:88, leading:0, color:'#6b7280'},
+        ]
+      }
+    ]
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────
+let curElection = 'May2026Gen';
+let donutChart = null;
+
+// ─────────────────────────────────────────────────────────────────────────
+// LIVE FETCH (browser does this — multiple proxy fallbacks)
+// ─────────────────────────────────────────────────────────────────────────
+async function tryFetchECI(url) {
+  const proxies = [
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    `https://thingproxy.freeboard.io/fetch/${url}`,
+  ];
+  for (const proxy of proxies) {
+    try {
+      const r = await fetch(proxy, { signal: AbortSignal.timeout(6000) });
+      if (!r.ok) continue;
+      const data = await r.json();
+      const html = data.contents || data.data || await r.text();
+      if (html && html.length > 500) return html;
+    } catch {}
+    try {
+      // direct try
+      const r2 = await fetch(url, { signal: AbortSignal.timeout(5000) });
+      const t = await r2.text();
+      if (t && t.length > 500) return t;
+    } catch {}
+  }
+  return null;
+}
+
+async function loadData() {
+  const btn = document.getElementById('refreshBtn');
+  btn.querySelector('span').style.animation = 'spin .7s linear infinite';
+  const ed = DB[curElection];
+  const html = await tryFetchECI(ed.eciUrl);
+  if (html) {
+    const fresh = parseECIHtml(html, ed.eciUrl);
+    if (fresh && fresh.length > 0) {
+      ed.states = fresh;
+      ed.lastUpdated = new Date().toLocaleString('en-IN');
+      document.getElementById('eciSrc').textContent = '✓ LIVE from results.eci.gov.in';
+      document.getElementById('eciSrc').style.color = 'var(--green)';
+    }
+  }
+  renderAll();
+  btn.querySelector('span').style.animation = '';
+}
+
+function parseECIHtml(html, baseUrl) {
+  try {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const states = [];
+    const blocks = html.split(/(?=<img[^>]*\/svg\/)/);
+    const SVG_MAP = {
+      'assam':'Assam','kerala':'Kerala','tamil-nadu':'Tamil Nadu','west-bangal':'West Bengal',
+      'west-bengal':'West Bengal','pundecherry':'Puducherry','puducherry':'Puducherry',
+      'delhi':'Delhi','gujarat':'Gujarat','maharashtra':'Maharashtra',
+      'uttar-pradesh':'Uttar Pradesh','bihar':'Bihar','rajasthan':'Rajasthan',
+      'madhya-pradesh':'Madhya Pradesh','karnataka':'Karnataka','andhra-pradesh':'Andhra Pradesh',
+      'telangana':'Telangana','haryana':'Haryana','punjab':'Punjab',
+      'jharkhand':'Jharkhand','chhattisgarh':'Chhattisgarh',
+    };
+    blocks.forEach(block => {
+      const sm = block.match(/\/svg\/([^"']+)\.svg/);
+      if (!sm) return;
+      const stateName = SVG_MAP[sm[1].toLowerCase()];
+      if (!stateName) return;
+      const tm = block.match(/Assembly Constituencies\s*[\s\S]*?(\d+)\*?\s*\/\s*(\d+)/);
+      const counted = tm ? parseInt(tm[1]) : 0;
+      const total = tm ? parseInt(tm[2]) : 0;
+      const parties = [];
+      const tblM = block.match(/<table[\s\S]*?<\/table>/i);
+      if (tblM) {
+        const rows = [...new DOMParser().parseFromString(tblM[0],'text/html').querySelectorAll('tr')];
+        rows.slice(1).forEach(row => {
+          const cells = [...row.querySelectorAll('td')];
+          if (cells.length >= 3) {
+            const fullName = cells[0]?.textContent?.trim() || '';
+            const abbr = fullName.match(/- ([A-Z()\d]+)$/)?.[1] || fullName.split(' ').map(w=>w[0]).join('').slice(0,5);
+            const won = parseInt(cells[1]?.textContent?.trim()) || 0;
+            const leading = parseInt(cells[2]?.textContent?.trim()) || 0;
+            if (fullName && (won+leading) > 0) {
+              parties.push({abbr, full:fullName, won, leading, color:partyColor(abbr)});
+            }
+          }
+        });
+      }
+      if (parties.length > 0) {
+        states.push({name:stateName, total, counted, majority:Math.floor(total/2)+1, parties});
+      }
+    });
+    return states;
+  } catch(e) { return null; }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────────────────────────────────
+function renderAll() {
+  const ed = DB[curElection];
+  document.getElementById('masterTs').textContent = ed.lastUpdated || '—';
+  renderStats(ed);
+  renderActiveStrip(ed);
+  renderStateResults(ed);
+  renderNatChart(ed);
+  renderSbStats(ed);
+  updateTicker(ed);
+}
+
+function renderStats(ed) {
+  let totalStates=ed.states.length, totalSeats=0, declared=0;
+  const partyTotals={};
+  ed.states.forEach(s => {
+    totalSeats += s.total;
+    s.parties.forEach(p => {
+      const t = p.won + p.leading;
+      declared += t;
+      partyTotals[p.abbr] = (partyTotals[p.abbr]||0) + t;
+    });
+  });
+  const lead = Object.entries(partyTotals).sort((a,b)=>b[1]-a[1])[0];
+  const pct = totalSeats ? Math.round(declared/totalSeats*100) : 0;
+  document.getElementById('statRow').innerHTML = `
+    <div class="stat">
+      <div class="stat-val">${totalStates}</div>
+      <div class="stat-lbl">States counting</div>
+      <div class="stat-sub">ACTIVE</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">${totalSeats.toLocaleString('en-IN')}</div>
+      <div class="stat-lbl">Total seats</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">${declared.toLocaleString('en-IN')}</div>
+      <div class="stat-lbl">Results in</div>
+      <div class="stat-sub">${pct}% declared</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val" style="font-size:16px;color:${partyColor(lead?.[0]||'')}">${lead?.[0]||'—'}</div>
+      <div class="stat-lbl">Leading party</div>
+      <div class="stat-sub">${lead?.[1]||0} seats</div>
+    </div>`;
+}
+
+function renderActiveStrip(ed) {
+  if (!ed.states.length) {
+    document.getElementById('activeStrip').innerHTML = '<div class="as-item"><div class="as-state" style="color:var(--text3)">No active elections</div></div>';
+    return;
+  }
+  document.getElementById('activeStrip').innerHTML = ed.states.map((s,i) => {
+    const declared = s.parties.reduce((a,p)=>a+p.won+p.leading,0);
+    const pct = s.total ? Math.round(declared/s.total*100) : 0;
+    const leader = s.parties[0];
+    return `<div class="as-item ${i===0?'on':''}" onclick="scrollToState('ss-${i}',this)">
+      <div class="as-state">${s.name}</div>
+      <div class="as-meta">${s.counted}/${s.total} ACs</div>
+      <div class="as-pct">${pct}% · ${leader?leader.abbr+' '+( leader.won+leader.leading):''}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderStateResults(ed) {
+  if (!ed.states.length) {
+    document.getElementById('stateResults').innerHTML = '<div class="ph">Is election ke liye data uplabdh nathi.<br>Baijee election tab select karo.</div>';
+    return;
+  }
+  document.getElementById('stateResults').innerHTML = ed.states.map((s,i) => stateHtml(s,i)).join('');
+}
+
+function stateHtml(s, idx) {
+  const declared = s.parties.reduce((a,p)=>a+p.won+p.leading,0);
+  const pct = s.total ? Math.round(declared/s.total*100) : 0;
+  const maxS = Math.max(...s.parties.map(p=>p.won+p.leading), 1);
+  const leader = s.parties[0];
+  const hasWinner = leader && (leader.won+leader.leading) >= s.majority;
+
+  // Alliance grouping (simple)
+  const ndaParties = ['BJP','SS(S)','NCP(A)','TDP','JDU','AGP','AINRC'];
+  const indiaParties = ['INC','TMC','SP','DMK','CPI(M)','CPI','IUML','AAP','JMM','RJD','SS(UBT)','NCP','KEC','AIUDF','BOPF'];
+  let ndaSeats=0, indiaSeats=0, othSeats=0;
+  s.parties.forEach(p=>{
+    const t=p.won+p.leading;
+    if(ndaParties.includes(p.abbr)) ndaSeats+=t;
+    else if(indiaParties.includes(p.abbr)) indiaSeats+=t;
+    else othSeats+=t;
+  });
+
+  const barsHtml = `
+    <div class="pt-hdr">
+      <span>Party</span><span>Seats won / leading</span><span>Total</span><span>Won</span><span>Lead</span>
+    </div>` +
+    s.parties.map(p => {
+      const t = p.won + p.leading;
+      const w = Math.round((t/maxS)*100);
+      const isWide = w > 25;
+      return `<div class="pt-row">
+        <div class="pt-party" style="color:${p.color}">${p.abbr}</div>
+        <div class="pt-bar-wrap">
+          <div class="pt-bar" style="width:${w}%;background:${p.color}">
+            ${isWide ? `<span class="pt-bar-lbl">${p.abbr} ${t}</span>` : ''}
+          </div>
+        </div>
+        <div class="pt-total" style="color:${p.color}">${t}</div>
+        <div class="pt-won">${p.won>0?p.won:'-'}</div>
+        <div class="pt-lead">${p.leading>0?p.leading:'-'}</div>
+      </div>`;
+    }).join('');
+
+  const majPct = s.total ? (s.majority/s.total*100) : 50;
+  const leadPct = s.total ? Math.min(((leader?.won||0)+(leader?.leading||0))/s.total*100, 100) : 0;
+
+  // Progress circle
+  const r = 18, circ = 2*Math.PI*r;
+  const dash = circ*(1 - pct/100);
+  const progColor = pct===100 ? '#22c55e' : pct>60 ? '#f5a623' : '#00b4d8';
+
+  const allianceHtml = (ndaSeats+indiaSeats+othSeats>0) ? `
+    <div class="alliance-row">
+      <div class="alliance-block">
+        <div class="ab-name">NDA Alliance</div>
+        <div class="ab-seats" style="color:#f97316">${ndaSeats}</div>
+        <div class="ab-parties">BJP + allies</div>
+      </div>
+      <div class="alliance-block">
+        <div class="ab-name">INDIA Alliance</div>
+        <div class="ab-seats" style="color:#3b82f6">${indiaSeats}</div>
+        <div class="ab-parties">INC + allies</div>
+      </div>
+      ${othSeats>0?`<div class="alliance-block">
+        <div class="ab-name">Others</div>
+        <div class="ab-seats" style="color:#6b7280">${othSeats}</div>
+        <div class="ab-parties">Regional / Ind</div>
+      </div>`:''}
+    </div>` : '';
+
+  return `<div class="state-section" id="ss-${idx}">
+    <div class="ss-head">
+      <div>
+        <div class="ss-name">${s.name}</div>
+        <div class="ss-type">${DB[curElection].label}</div>
+      </div>
+      <div class="ss-chips">
+        <div class="chip ${pct===100?'chip-done':'chip-live'}">${pct===100?'FINAL':'LIVE'}</div>
+        ${hasWinner?`<div class="chip chip-major">MAJORITY</div>`:''}
+      </div>
+    </div>
+
+    <div class="ss-progress">
+      <div class="prog-arc">
+        <svg class="prog-svg" viewBox="0 0 44 44">
+          <circle class="prog-bg" cx="22" cy="22" r="${r}"/>
+          <circle class="prog-fill" cx="22" cy="22" r="${r}"
+            stroke="${progColor}"
+            stroke-dasharray="${circ}"
+            stroke-dashoffset="${dash}"/>
+        </svg>
+        <div class="prog-center" style="color:${progColor}">${pct}%</div>
+      </div>
+      <div class="prog-info">
+        <div class="prog-title">${s.counted} of ${s.total} constituencies counted</div>
+        <div class="prog-detail">${s.total-s.counted} remaining · Majority: ${s.majority} seats</div>
+      </div>
+    </div>
+
+    ${allianceHtml}
+    <div class="party-table">${barsHtml}</div>
+
+    <div class="maj-section">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--text3);margin-bottom:4px;letter-spacing:.08em">MAJORITY METER</div>
+      <div class="maj-bar-wrap">
+        <div class="maj-bar-fill" style="width:${leadPct}%"></div>
+        <div class="maj-needle" style="left:${majPct}%"></div>
+      </div>
+      <div class="maj-labels">
+        <span style="color:${leader?.color}">${leader?leader.abbr+' '+(leader.won+leader.leading):''}</span>
+        <span>Majority: ${s.majority}</span>
+        <span>Total: ${s.total}</span>
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <a href="${DB[curElection].eciUrl}" target="_blank"
+        style="font-family:var(--mono);font-size:9px;color:var(--accent2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase">
+        ↗ View on ECI — results.eci.gov.in
+      </a>
+    </div>
+  </div>`;
+}
+
+function renderNatChart(ed) {
+  const partyTotals = {};
+  ed.states.forEach(s => s.parties.forEach(p => {
+    const t = p.won+p.leading;
+    if (t > 0) {
+      if (!partyTotals[p.abbr]) partyTotals[p.abbr] = {seats:0, color:p.color};
+      partyTotals[p.abbr].seats += t;
+    }
+  }));
+  const sorted = Object.entries(partyTotals).sort((a,b)=>b[1].seats-a[1].seats).slice(0,8);
+  const maxS = sorted[0]?.[1]?.seats || 1;
+  document.getElementById('natChart').innerHTML = sorted.map(([name,d]) => `
+    <div class="nat-row">
+      <div class="nat-party" style="color:${d.color}">${name}</div>
+      <div class="nat-bar"><div class="nat-fill" style="width:${Math.round(d.seats/maxS*100)}%;background:${d.color}"></div></div>
+      <div class="nat-seats" style="color:${d.color}">${d.seats}</div>
+    </div>`).join('') || '<div class="ph" style="padding:12px">No data</div>';
+}
+
+function renderSbStats(ed) {
+  let total=0, declared=0;
+  ed.states.forEach(s => {
+    total += s.total;
+    s.parties.forEach(p => declared += p.won+p.leading);
+  });
+  document.getElementById('sbStats').innerHTML = `
+    <div class="sb-stat"><div class="sb-stat-val">${ed.states.length}</div><div class="sb-stat-lbl">States</div></div>
+    <div class="sb-stat"><div class="sb-stat-val">${total}</div><div class="sb-stat-lbl">Total seats</div></div>
+    <div class="sb-stat"><div class="sb-stat-val">${declared}</div><div class="sb-stat-lbl">Declared</div><div class="sb-stat-sub">${total?Math.round(declared/total*100):0}%</div></div>
+    <div class="sb-stat"><div class="sb-stat-val">${total-declared}</div><div class="sb-stat-lbl">Pending</div></div>`;
+}
+
+function updateTicker(ed) {
+  const parts = ['⚡ INDIA ELECTION LIVE'];
+  ed.states.forEach(s => {
+    const top3 = s.parties.slice(0,3).map(p=>`${p.abbr} ${p.won+p.leading}`).join(' · ');
+    parts.push(`${s.name}: ${top3}`);
+  });
+  parts.push('Source: Election Commission of India — results.eci.gov.in');
+  document.getElementById('ticker').innerHTML = parts.map((p,i) =>
+    i===0 ? p : `<span style="margin:0 20px;opacity:.4">|</span>${p}`
+  ).join('') + '<span style="margin:0 20px;opacity:.4">|</span>';
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────
+const PARTY_COLORS = {
+  BJP:'#f97316',INC:'#3b82f6',TVK:'#7c3aed',ADMK:'#16a34a',DMK:'#b91c1c',
+  TMC:'#7c3aed',AITC:'#7c3aed',AAP:'#22c55e',SP:'#ea580c','CPI(M)':'#dc2626',
+  CPI:'#ef4444',IUML:'#0891b2',PMK:'#d97706',KEC:'#0e7490',AGP:'#65a30d',
+  AIUDF:'#c026d3',BOPF:'#0891b2',JMM:'#16a34a',RJD:'#c026d3',TDP:'#2563eb',
+  JDU:'#059669',AINRC:'#7c2d12'
+};
+function partyColor(p){ return PARTY_COLORS[p]||'#6b7280'; }
+
+function setElection(el, key) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('on'));
+  el.classList.add('on');
+  curElection = key;
+  renderAll();
+  loadData();
+}
+
+function scrollToState(id, el) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.as-item').forEach(i=>i.classList.remove('on'));
+  el?.classList.add('on');
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// NEWS
+// ─────────────────────────────────────────────────────────────────────────
+function qs(q){ document.getElementById('si').value=q; loadNews(q); }
+document.getElementById('si').addEventListener('keydown',e=>{if(e.key==='Enter')loadNews();});
+
+async function loadNews(q) {
+  q = q || document.getElementById('si').value.trim() || 'India assembly election May 2026 results';
+  const box = document.getElementById('newsBox');
+  box.innerHTML = '<div class="ph" style="padding:16px">Loading...</div>';
+  try {
+    const url = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch='
+      + encodeURIComponent(q + ' India election')
+      + '&format=json&origin=*&srlimit=8&srprop=snippet';
+    const r = await fetch(url);
+    const data = await r.json();
+    const items = data.query?.search || [];
+    if (!items.length) { box.innerHTML='<div class="ph" style="padding:16px">No articles found.</div>'; return; }
+    box.innerHTML = items.map(s => `
+      <div class="news-item" onclick="window.open('https://en.wikipedia.org/wiki/${encodeURIComponent(s.title)}','_blank')">
+        <div class="ni-kicker">Wikipedia</div>
+        <div class="ni-title">${s.title}</div>
+        <div class="ni-snip">${(s.snippet||'').replace(/<[^>]+>/g,'').replace(/&quot;/g,'"').replace(/&#039;/g,"'").replace(/&amp;/g,'&')}</div>
+      </div>`).join('');
+  } catch(e) {
+    box.innerHTML = `<div class="ph" style="padding:16px;color:var(--accent)">Error: ${e.message}</div>`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────
+renderAll();
+loadData();
+loadNews('India assembly election May 2026 results TVK West Bengal BJP');
+setInterval(loadData, 120000); // auto-refresh every 2 min
+</script>
+</body>
+</html>
