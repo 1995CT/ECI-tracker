@@ -1,0 +1,27 @@
+name: Fetch ECI Live Data
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # GitHub minimum is 5 min
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch ECI data (run 4 times with 75s gap = ~5min coverage)
+        run: |
+          for i in 1 2 3 4; do
+            echo "=== Run $i ==="
+            python3 scripts/fetch_eci.py
+            git config user.name "ECI Bot"
+            git config user.email "eci-bot@github.com"
+            git add data.json
+            git diff --cached --quiet || git commit -m "ECI update run-$i $(date '+%H:%M:%S IST')"
+            git push
+            if [ $i -lt 4 ]; then sleep 75; fi
+          done
