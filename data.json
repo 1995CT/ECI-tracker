@@ -1,0 +1,154 @@
+{
+  "generated_at": "2026-05-04 11:21 UTC",
+  "generated_ist": "04:51 PM, 04 May 2026",
+  "note": "Initial data from ECI. GitHub Actions will update this every 5 minutes.",
+  "elections": {
+    "May2026Gen": {
+      "label": "Assembly Elections — May 2026",
+      "states": [
+        {
+          "name": "Tamil Nadu",
+          "total": 234,
+          "counted": 234,
+          "majority": 118,
+          "last_updated": "Updated live via ECI",
+          "parties": [
+            {"abbr": "TVK",    "full": "Tamilaga Vettri Kazhagam",          "won": 0,  "leading": 109, "total": 109, "color": "#7c3aed"},
+            {"abbr": "ADMK",   "full": "All India Anna Dravida Munnetra Kazhagam", "won": 0, "leading": 56, "total": 56, "color": "#16a34a"},
+            {"abbr": "DMK",    "full": "Dravida Munnetra Kazhagam",         "won": 0,  "leading": 49, "total": 49,  "color": "#b91c1c"},
+            {"abbr": "PMK",    "full": "Pattali Makkal Katchi",             "won": 0,  "leading": 5,  "total": 5,   "color": "#d97706"},
+            {"abbr": "INC",    "full": "Indian National Congress",          "won": 0,  "leading": 4,  "total": 4,   "color": "#3b82f6"},
+            {"abbr": "CPI",    "full": "Communist Party of India",          "won": 0,  "leading": 3,  "total": 3,   "color": "#ef4444"},
+            {"abbr": "IUML",   "full": "Indian Union Muslim League",        "won": 0,  "leading": 2,  "total": 2,   "color": "#0891b2"},
+            {"abbr": "OTH",    "full": "Others",                            "won": 0,  "leading": 6,  "total": 6,   "color": "#6b7280"}
+          ]
+        },
+        {
+          "name": "West Bengal",
+          "total": 294,
+          "counted": 293,
+          "majority": 148,
+          "last_updated": "Updated live via ECI",
+          "parties": [
+            {"abbr": "BJP",    "full": "Bharatiya Janata Party",            "won": 4,  "leading": 194, "total": 198, "color": "#f97316"},
+            {"abbr": "AITC",   "full": "All India Trinamool Congress",      "won": 1,  "leading": 88,  "total": 89,  "color": "#7c3aed"},
+            {"abbr": "INC",    "full": "Indian National Congress",          "won": 0,  "leading": 2,   "total": 2,   "color": "#3b82f6"},
+            {"abbr": "AJUP",   "full": "Aam Janata Unnayan Party",          "won": 0,  "leading": 2,   "total": 2,   "color": "#0891b2"},
+            {"abbr": "CPI(M)", "full": "Communist Party India Marxist",     "won": 0,  "leading": 1,   "total": 1,   "color": "#dc2626"},
+            {"abbr": "AISF",   "full": "All India Secular Front",           "won": 0,  "leading": 1,   "total": 1,   "color": "#ef4444"}
+          ]
+        },
+        {
+          "name": "Assam",
+          "total": 126,
+          "counted": 25,
+          "majority": 64,
+          "last_updated": "Updated live via ECI",
+          "parties": [
+            {"abbr": "BJP",      "full": "Bharatiya Janata Party",          "won": 0, "leading": 16, "total": 16, "color": "#f97316"},
+            {"abbr": "BOPF",     "full": "Bodoland Peoples Front",          "won": 0, "leading": 3,  "total": 3,  "color": "#8b5cf6"},
+            {"abbr": "AGP",      "full": "Asom Gana Parishad",              "won": 0, "leading": 2,  "total": 2,  "color": "#65a30d"},
+            {"abbr": "INC",      "full": "Indian National Congress",        "won": 0, "leading": 2,  "total": 2,  "color": "#3b82f6"},
+            {"abbr": "ASMJTYP", "full": "Assam Jatiya Parishad",           "won": 0, "leading": 1,  "total": 1,  "color": "#f59e0b"},
+            {"abbr": "AIUDF",    "full": "All India United Democratic Front","won": 0, "leading": 1,  "total": 1,  "color": "#c026d3"}
+          ]
+        },
+        {
+          "name": "Kerala",
+          "total": 140,
+          "counted": 127,
+          "majority": 71,
+          "last_updated": "Updated live via ECI",
+          "parties": [
+            {"abbr": "INC",    "full": "Indian National Congress",          "won": 1,  "leading": 61, "total": 62, "color": "#3b82f6"},
+            {"abbr": "CPI(M)", "full": "Communist Party India Marxist",     "won": 1,  "leading": 25, "total": 26, "color": "#dc2626"},
+            {"abbr": "IUML",   "full": "Indian Union Muslim League",        "won": 0,  "leading": 23, "total": 23, "color": "#0891b2"},
+            {"abbr": "CPI",    "full": "Communist Party of India",          "won": 0,  "leading": 9,  "total": 9,  "color": "#ef4444"},
+            {"abbr": "KEC",    "full": "Kerala Congress",                   "won": 0,  "leading": 7,  "total": 7,  "color": "#d97706"},
+            {"abbr": "OTH",    "full": "Others",                            "won": 0,  "leading": 9,  "total": 9,  "color": "#6b7280"}
+          ]
+        },
+        {
+          "name": "Puducherry",
+          "total": 30,
+          "counted": 16,
+          "majority": 16,
+          "last_updated": "Updated live via ECI",
+          "parties": [
+            {"abbr": "AINRC",  "full": "All India NR Congress",             "won": 4, "leading": 5, "total": 9, "color": "#f59e0b"},
+            {"abbr": "IND",    "full": "Independent",                       "won": 0, "leading": 3, "total": 3, "color": "#6b7280"},
+            {"abbr": "BJP",    "full": "Bharatiya Janata Party",            "won": 1, "leading": 1, "total": 2, "color": "#f97316"},
+            {"abbr": "INC",    "full": "Indian National Congress",          "won": 1, "leading": 0, "total": 1, "color": "#3b82f6"},
+            {"abbr": "ADMK",   "full": "Anna Dravida Munnetra Kazhagam",   "won": 1, "leading": 0, "total": 1, "color": "#16a34a"}
+          ]
+        }
+      ]
+    },
+    "Feb2025": {
+      "label": "Delhi Assembly — February 2025",
+      "states": [
+        {
+          "name": "Delhi",
+          "total": 70, "counted": 70, "majority": 36,
+          "last_updated": "February 2025 — Final Result",
+          "parties": [
+            {"abbr": "BJP",  "full": "Bharatiya Janata Party", "won": 48, "leading": 0, "total": 48, "color": "#f97316"},
+            {"abbr": "AAP",  "full": "Aam Aadmi Party",        "won": 22, "leading": 0, "total": 22, "color": "#22c55e"},
+            {"abbr": "INC",  "full": "Indian National Congress","won": 0,  "leading": 0, "total": 0,  "color": "#3b82f6"}
+          ]
+        }
+      ]
+    },
+    "Nov2024": {
+      "label": "Assembly Elections — November 2024",
+      "states": [
+        {
+          "name": "Maharashtra",
+          "total": 288, "counted": 288, "majority": 145,
+          "last_updated": "November 2024 — Final Result",
+          "parties": [
+            {"abbr": "BJP",    "full": "Bharatiya Janata Party",   "won": 132, "leading": 0, "total": 132, "color": "#f97316"},
+            {"abbr": "SS(S)",  "full": "Shiv Sena (Shinde)",        "won": 57,  "leading": 0, "total": 57,  "color": "#d97706"},
+            {"abbr": "NCP(A)", "full": "NCP (Ajit Pawar)",           "won": 41,  "leading": 0, "total": 41,  "color": "#8b5cf6"},
+            {"abbr": "INC",    "full": "Indian National Congress",   "won": 37,  "leading": 0, "total": 37,  "color": "#3b82f6"},
+            {"abbr": "SS(UBT)","full": "Shiv Sena (Uddhav)",        "won": 20,  "leading": 0, "total": 20,  "color": "#a21caf"},
+            {"abbr": "NCP",    "full": "NCP (Sharad Pawar)",         "won": 10,  "leading": 0, "total": 10,  "color": "#0891b2"},
+            {"abbr": "OTH",    "full": "Others",                     "won": 11,  "leading": 0, "total": 11,  "color": "#6b7280"}
+          ]
+        },
+        {
+          "name": "Jharkhand",
+          "total": 81, "counted": 81, "majority": 41,
+          "last_updated": "November 2024 — Final Result",
+          "parties": [
+            {"abbr": "JMM",  "full": "Jharkhand Mukti Morcha",     "won": 34, "leading": 0, "total": 34, "color": "#16a34a"},
+            {"abbr": "INC",  "full": "Indian National Congress",   "won": 16, "leading": 0, "total": 16, "color": "#3b82f6"},
+            {"abbr": "BJP",  "full": "Bharatiya Janata Party",     "won": 21, "leading": 0, "total": 21, "color": "#f97316"},
+            {"abbr": "RJD",  "full": "Rashtriya Janata Dal",       "won": 4,  "leading": 0, "total": 4,  "color": "#c026d3"},
+            {"abbr": "OTH",  "full": "Others",                     "won": 6,  "leading": 0, "total": 6,  "color": "#6b7280"}
+          ]
+        }
+      ]
+    },
+    "LS2024": {
+      "label": "Lok Sabha General Election — 2024",
+      "states": [
+        {
+          "name": "India (Lok Sabha 543 seats)",
+          "total": 543, "counted": 543, "majority": 272,
+          "last_updated": "June 2024 — Final Official Result",
+          "parties": [
+            {"abbr": "BJP",  "full": "Bharatiya Janata Party",    "won": 240, "leading": 0, "total": 240, "color": "#f97316"},
+            {"abbr": "INC",  "full": "Indian National Congress",  "won": 99,  "leading": 0, "total": 99,  "color": "#3b82f6"},
+            {"abbr": "SP",   "full": "Samajwadi Party",            "won": 37,  "leading": 0, "total": 37,  "color": "#ea580c"},
+            {"abbr": "TMC",  "full": "Trinamool Congress",         "won": 29,  "leading": 0, "total": 29,  "color": "#7c3aed"},
+            {"abbr": "DMK",  "full": "Dravida Munnetra Kazhagam", "won": 22,  "leading": 0, "total": 22,  "color": "#b91c1c"},
+            {"abbr": "TDP",  "full": "Telugu Desam Party",         "won": 16,  "leading": 0, "total": 16,  "color": "#2563eb"},
+            {"abbr": "JDU",  "full": "Janata Dal United",          "won": 12,  "leading": 0, "total": 12,  "color": "#059669"},
+            {"abbr": "OTH",  "full": "Others",                     "won": 88,  "leading": 0, "total": 88,  "color": "#6b7280"}
+          ]
+        }
+      ]
+    }
+  }
+}
