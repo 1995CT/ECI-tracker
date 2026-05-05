@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>India Election Live — ECI Official</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#191919;--bg4:#222;
+  --bdr:#252525;--bdr2:#333;
+  --txt:#f2f0ea;--txt2:#9e9b94;--txt3:#5c5a55;
+  --acc:#e8380d;--acc2:#0ea5e9;--gold:#f59e0b;
+  --grn:#22c55e;--red:#ef4444;
+  --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
+
+/* TICKER */
+.ticker{height:28px;background:var(--acc);overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;animation:tick 55s linear infinite;white-space:nowrap}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{font-family:var(--mono);font-size:10px;color:#fff;padding:0 10px}
+.ti-sep{opacity:.3;padding:0 4px}
+
+/* HEADER */
+.hdr{padding:14px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--bdr2)}
+.brand-eye{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+.brand-name{font-family:var(--mono);font-size:clamp(18px,3.5vw,30px);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.brand-name .r{color:var(--acc)}
+.brand-sub{font-size:11px;color:var(--txt3);margin-top:3px}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.live-badge{display:flex;align-items:center;gap:5px;background:var(--acc);color:#fff;padding:5px 12px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;border-radius:2px}
+.ld{width:6px;height:6px;background:#fff;border-radius:50%;animation:ld 1s infinite}
+@keyframes ld{0%,100%{opacity:1}50%{opacity:.2}}
+.hdr-ts{font-family:var(--mono);font-size:10px;color:var(--txt3)}
+.hdr-ts b{color:var(--acc2)}
+.hdr-src{font-family:var(--mono);font-size:9px}
+
+/* LANG STRIP */
+.lang-strip{display:flex;border-bottom:1px solid var(--bdr);background:var(--bg2)}
+.lbtn{padding:7px 16px;font-size:11px;font-weight:500;cursor:pointer;color:var(--txt3);border-right:1px solid var(--bdr);letter-spacing:.04em;transition:all .12s}
+.lbtn:hover{color:var(--txt);background:var(--bg3)}
+.lbtn.on{color:var(--acc2);background:var(--bg3);font-weight:700}
+
+/* NAV */
+.nav{display:flex;background:var(--bg2);border-bottom:1px solid var(--bdr2);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nv{padding:9px 18px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);cursor:pointer;white-space:nowrap;border-right:1px solid var(--bdr);flex-shrink:0;transition:all .12s}
+.nv:hover{color:var(--txt);background:var(--bg3)}
+.nv.on{color:var(--acc);border-bottom:2px solid var(--acc);margin-bottom:-1px;background:var(--bg3)}
+
+/* SHELL */
+.shell{display:grid;grid-template-columns:1fr 300px;min-height:85vh}
+@media(max-width:720px){.shell{grid-template-columns:1fr}}
+.main{border-right:1px solid var(--bdr)}
+@media(max-width:720px){.main{border-right:none}}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--bdr)}
+@media(max-width:480px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:13px 16px;border-right:1px solid var(--bdr)}
+.stat:last-child{border-right:none}
+.sv{font-family:var(--mono);font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.sl{font-size:10px;color:var(--txt3);margin-top:3px;letter-spacing:.04em}
+.ss{font-family:var(--mono);font-size:9px;color:var(--acc2);margin-top:2px;font-weight:600}
+
+/* STATE TABS STRIP */
+.tabs-strip{display:flex;border-bottom:1px solid var(--bdr);overflow-x:auto;scrollbar-width:none;background:var(--bg2)}
+.tabs-strip::-webkit-scrollbar{display:none}
+.st{padding:0;border-right:1px solid var(--bdr);flex-shrink:0;cursor:pointer;transition:background .12s;position:relative;min-width:120px}
+.st-inner{padding:9px 14px}
+.st:hover{background:var(--bg3)}
+.st.on{background:var(--bg3)}
+.st.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--acc)}
+.st-name{font-family:var(--mono);font-size:11px;font-weight:700;white-space:nowrap;transition:color .12s}
+.st.on .st-name{color:var(--acc)}
+.st-meta{font-size:9px;color:var(--txt3);margin-top:2px;font-family:var(--mono)}
+.st-lead{font-size:10px;font-weight:700;margin-top:3px;font-family:var(--mono)}
+.st-chip{display:inline-block;font-family:var(--mono);font-size:7px;padding:2px 5px;border-radius:2px;font-weight:700;text-transform:uppercase;margin-top:3px}
+.chip-live{background:#e8380d18;color:var(--acc);border:1px solid #e8380d35}
+.chip-done{background:#22c55e18;color:var(--grn);border:1px solid #22c55e35}
+.chip-maj{background:#f59e0b18;color:var(--gold);border:1px solid #f59e0b35}
+
+/* ECI BAR */
+.eci-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;background:#0ea5e908;border-bottom:1px solid #0ea5e918}
+.eci-l{font-family:var(--mono);font-size:9px;color:var(--acc2);letter-spacing:.06em}
+.eci-r{display:flex;align-items:center;gap:8px}
+.eci-ts{font-family:var(--mono);font-size:9px;color:var(--txt3)}
+.rfbtn{font-family:var(--mono);font-size:9px;color:var(--acc2);border:1px solid var(--acc2);background:none;padding:3px 9px;cursor:pointer;border-radius:2px;text-transform:uppercase;letter-spacing:.06em}
+.rfbtn:hover{background:var(--acc2);color:#000}
+.spin{animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* STATE PANEL — inline expand below tab */
+#statePanel{border-bottom:1px solid var(--bdr)}
+.sp-inner{padding:18px 16px}
+
+/* Progress circle */
+.prog-row{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg3);border-radius:4px;border:1px solid var(--bdr);margin-bottom:12px}
+.prog-arc{position:relative;width:48px;height:48px;flex-shrink:0}
+.psvg{width:48px;height:48px;transform:rotate(-90deg)}
+.p-bg{fill:none;stroke:var(--bdr2);stroke-width:4}
+.p-fill{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.p-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700}
+.prog-info .pi-t{font-size:13px;font-weight:600;margin-bottom:2px}
+.prog-info .pi-s{font-family:var(--mono);font-size:10px;color:var(--txt3)}
+
+/* Alliance row */
+.al-row{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.al{flex:1;min-width:88px;padding:9px 11px;background:var(--bg3);border-radius:4px;border:1px solid var(--bdr)}
+.al-n{font-family:var(--mono);font-size:8px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.al-s{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1}
+.al-sub{font-size:10px;color:var(--txt3);margin-top:2px}
+
+/* Party table */
+.pt-hdr{display:grid;grid-template-columns:52px 1fr 38px 30px 30px;gap:5px;padding-bottom:5px;border-bottom:1px solid var(--bdr);margin-bottom:6px}
+.pt-hdr span{font-family:var(--mono);font-size:8px;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;text-align:right}
+.pt-hdr span:nth-child(2){text-align:left}
+.pt-row{display:grid;grid-template-columns:52px 1fr 38px 30px 30px;gap:5px;align-items:center;margin-bottom:5px}
+.pt-name{font-family:var(--mono);font-size:10px;font-weight:700}
+.pt-bw{height:17px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.pt-bf{height:100%;border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:5px}
+.pt-bl{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.pt-tot{font-family:var(--mono);font-size:11px;font-weight:700;text-align:right}
+.pt-w{font-family:var(--mono);font-size:9px;color:var(--grn);text-align:right}
+.pt-l{font-family:var(--mono);font-size:9px;color:var(--acc2);text-align:right}
+
+/* Majority bar */
+.maj-wrap{padding:8px 0 0;border-top:1px solid var(--bdr);margin-top:6px}
+.maj-lbl{font-family:var(--mono);font-size:8px;color:var(--txt3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.maj-track{position:relative;height:7px;background:var(--bg3);border-radius:4px;margin-bottom:5px}
+.maj-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--acc2),#0369a1);transition:width .8s ease}
+.maj-needle{position:absolute;top:-5px;width:2px;height:17px;background:var(--gold);border-radius:2px;transform:translateX(-50%)}
+.maj-needle::after{content:'MAJ';position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:7px;color:var(--gold);white-space:nowrap}
+.maj-nums{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--txt3)}
+
+/* ASIDE */
+.aside{background:var(--bg2)}
+.sb-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--bdr);background:var(--bg3)}
+.sb-t{font-size:12px;font-weight:600}
+.sb-btn{font-family:var(--mono);font-size:8px;color:var(--acc2);border:1px solid var(--acc2);background:none;padding:3px 7px;cursor:pointer;border-radius:2px;text-transform:uppercase}
+.sb-btn:hover{background:var(--acc2);color:#000}
+
+/* National chart */
+.nat{padding:11px 14px;border-bottom:1px solid var(--bdr)}
+.nc-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.nc-n{font-family:var(--mono);font-size:10px;font-weight:700;min-width:48px}
+.nc-bar{flex:1;height:14px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.nc-fill{height:100%;border-radius:2px;transition:width .8s ease}
+.nc-s{font-family:var(--mono);font-size:10px;min-width:26px;text-align:right}
+
+/* Snapshot */
+.snap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bdr)}
+.sc2{background:var(--bg2);padding:10px 13px}
+.sv2{font-family:var(--mono);font-size:17px;font-weight:700;letter-spacing:-.02em}
+.sl2{font-size:9px;color:var(--txt3);margin-top:2px}
+.ss2{font-family:var(--mono);font-size:8px;color:var(--acc2);margin-top:1px}
+
+/* NEWS */
+.news-lang{display:flex;gap:0;border-bottom:1px solid var(--bdr);background:var(--bg3)}
+.nlbtn{padding:6px 12px;font-size:10px;font-weight:600;cursor:pointer;color:var(--txt3);border-right:1px solid var(--bdr);transition:all .12s}
+.nlbtn:hover{color:var(--txt)}
+.nlbtn.on{color:var(--acc2)}
+
+.sb-search{display:flex;border-bottom:1px solid var(--bdr)}
+.sb-search input{flex:1;padding:8px 11px;background:var(--bg2);border:none;color:var(--txt);font-size:12px;outline:none;border-right:1px solid var(--bdr)}
+.sb-search input::placeholder{color:var(--txt3)}
+.sb-search button{padding:8px 11px;background:var(--bg3);border:none;color:var(--acc2);cursor:pointer;font-size:12px}
+
+.pills{display:flex;flex-wrap:wrap;gap:4px;padding:8px 12px;border-bottom:1px solid var(--bdr)}
+.pill{font-family:var(--mono);font-size:8px;padding:3px 7px;border:1px solid var(--bdr2);border-radius:2px;cursor:pointer;color:var(--txt3);text-transform:uppercase;letter-spacing:.04em}
+.pill:hover{border-color:var(--acc2);color:var(--acc2)}
+
+.ni{padding:10px 12px;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background .1s}
+.ni:hover{background:var(--bg3)}
+.ni-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;gap:5px}
+.ni-src{font-family:var(--mono);font-size:8px;color:var(--acc2);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.ni-time{font-family:var(--mono);font-size:8px;color:var(--txt3);flex-shrink:0}
+.ni-title{font-size:12px;font-weight:500;line-height:1.4;color:var(--txt);margin-bottom:2px}
+.ni-snip{font-size:10px;color:var(--txt3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ni-tag{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:8px;color:var(--grn)}
+
+/* UTILS */
+.sk{background:var(--bg3);border-radius:3px;animation:sk 1.2s infinite}
+@keyframes sk{0%,100%{opacity:.3}50%{opacity:.8}}
+.ph{padding:24px 14px;text-align:center;color:var(--txt3);font-size:12px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ti">⚡ INDIA ELECTION LIVE</span><span class="ti-sep">|</span>
+    <span class="ti">Loading ECI data...</span><span class="ti-sep">|</span>
+    <span class="ti">Source: results.eci.gov.in — Official ECI</span><span class="ti-sep">|</span>
+    <span class="ti">⚡ INDIA ELECTION LIVE</span><span class="ti-sep">|</span>
+    <span class="ti">Loading ECI data...</span><span class="ti-sep">|</span>
+    <span class="ti">Source: results.eci.gov.in — Official ECI</span><span class="ti-sep">|</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div>
+    <div class="brand-eye">Official Source — Election Commission of India (ECI)</div>
+    <div class="brand-name">INDIA <span class="r">ELECTION</span> LIVE</div>
+    <div class="brand-sub">All States · All Elections · Auto-updates every 1 minute</div>
+  </div>
+  <div class="hdr-r">
+    <div class="live-badge"><div class="ld"></div>LIVE ECI</div>
+    <div class="hdr-ts">Updated: <b id="masterTs">Loading...</b></div>
+    <div class="hdr-src" id="srcLabel" style="color:var(--txt3);font-family:var(--mono);font-size:9px">results.eci.gov.in</div>
+  </div>
+</div>
+
+<!-- LANG -->
+<div class="lang-strip">
+  <div class="lbtn on" onclick="setLang('en',this)">English</div>
+  <div class="lbtn" onclick="setLang('hi',this)">हिंदी</div>
+  <div class="lbtn" onclick="setLang('gu',this)">ગુજરાતી</div>
+</div>
+
+<!-- NAV -->
+<div class="nav" id="elNav">
+  <div class="nv on" onclick="setEl(this,'May2026Gen')">MAY 2026 — ASSEMBLY</div>
+  <div class="nv" onclick="setEl(this,'Feb2025')">FEB 2025 — DELHI</div>
+  <div class="nv" onclick="setEl(this,'Nov2024')">NOV 2024 — ASSEMBLY</div>
+  <div class="nv" onclick="setEl(this,'LS2024')">LOK SABHA 2024</div>
+</div>
+
+<!-- SHELL -->
+<div class="shell">
+<div class="main">
+  <!-- Stats -->
+  <div class="stat-row" id="statRow">
+    <div class="stat"><div class="sv sk" style="height:24px;width:40px;margin-bottom:5px"></div><div class="sl">States</div></div>
+    <div class="stat"><div class="sv sk" style="height:24px;width:55px;margin-bottom:5px"></div><div class="sl">Total Seats</div></div>
+    <div class="stat"><div class="sv sk" style="height:24px;width:55px;margin-bottom:5px"></div><div class="sl">Declared</div></div>
+    <div class="stat"><div class="sv sk" style="height:24px;width:70px;margin-bottom:5px"></div><div class="sl">Leading Party</div></div>
+  </div>
+
+  <!-- State tabs -->
+  <div class="tabs-strip" id="tabsStrip"></div>
+
+  <!-- State panel — expands inline -->
+  <div id="statePanel" style="display:none"></div>
+
+  <!-- ECI bar -->
+  <div class="eci-bar">
+    <div class="eci-l">⚡ LIVE — results.eci.gov.in · GitHub Actions ~75s updates</div>
+    <div class="eci-r">
+      <div class="eci-ts" id="eciTs"></div>
+      <button class="rfbtn" onclick="refresh()"><span id="rfSpn">↻</span> REFRESH</button>
+    </div>
+  </div>
+</div>
+
+<!-- ASIDE -->
+<div class="aside">
+  <div class="sb-hdr"><span class="sb-t">National Tally</span></div>
+  <div class="nat" id="natChart"><div class="sk" style="height:80px"></div></div>
+
+  <div class="sb-hdr"><span class="sb-t">Snapshot</span></div>
+  <div class="snap" id="snapGrid">
+    <div class="sc2"><div class="sv2 sk" style="height:20px;width:35px"></div><div class="sl2">States</div></div>
+    <div class="sc2"><div class="sv2 sk" style="height:20px;width:50px"></div><div class="sl2">Seats</div></div>
+    <div class="sc2"><div class="sv2 sk" style="height:20px;width:50px"></div><div class="sl2">Declared</div></div>
+    <div class="sc2"><div class="sv2 sk" style="height:20px;width:50px"></div><div class="sl2">Pending</div></div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="sb-hdr"><span class="sb-t" id="newsTitleLbl">News (Verified Sources)</span><button class="sb-btn" onclick="loadNews()">↻</button></div>
+  <div class="news-lang">
+    <div class="nlbtn on" id="nl-en" onclick="setNewsLang('en',this)">English</div>
+    <div class="nlbtn" id="nl-hi" onclick="setNewsLang('hi',this)">हिंदी</div>
+    <div class="nlbtn" id="nl-gu" onclick="setNewsLang('gu',this)">ગુજરાતી</div>
+  </div>
+  <div class="sb-search">
+    <input type="text" id="si" placeholder="Search election news..."/>
+    <button onclick="loadNews()">🔍</button>
+  </div>
+  <div class="pills" id="pillsBox">
+    <div class="pill" onclick="qs('Tamil Nadu election results')">Tamil Nadu</div>
+    <div class="pill" onclick="qs('West Bengal BJP TMC election')">West Bengal</div>
+    <div class="pill" onclick="qs('Assam election results')">Assam</div>
+    <div class="pill" onclick="qs('Kerala election results')">Kerala</div>
+    <div class="pill" onclick="qs('India election 2026')">All Results</div>
+  </div>
+  <div id="newsBox"><div class="ph" style="padding:14px">Loading news...</div></div>
+</div>
+</div>
+
+<script>
+// ── COLORS ────────────────────────────────────────────────────────────────
+const PC={BJP:'#f97316',INC:'#3b82f6',TVK:'#7c3aed',ADMK:'#16a34a',DMK:'#b91c1c',
+  TMC:'#7c3aed',AITC:'#7c3aed',AAP:'#22c55e',SP:'#ea580c','CPI(M)':'#dc2626',
+  CPI:'#ef4444',IUML:'#0891b2',PMK:'#d97706',KEC:'#0e7490',AGP:'#65a30d',
+  AIUDF:'#c026d3',BOPF:'#0891b2',JMM:'#16a34a',RJD:'#c026d3',TDP:'#2563eb',
+  JDU:'#059669',AINRC:'#b45309',RSP:'#7c3aed',VCK:'#be185d',
+  'SS(S)':'#d97706','NCP(A)':'#8b5cf6','SS(UBT)':'#a21caf',NCP:'#0891b2',
+  AJUP:'#0891b2',AISF:'#ef4444',ASMJTYP:'#f59e0b',IND:'#6b7280',OTH:'#6b7280'};
+const pc=k=>PC[k]||'#6b7280';
+const NDA=['BJP','SS(S)','NCP(A)','TDP','JDU','AGP','AINRC','BOPF'];
+const INDIA=['INC','TMC','AITC','SP','DMK','CPI(M)','CPI','IUML','AAP','JMM','RJD','SS(UBT)','NCP','KEC','AIUDF','TVK','ASMJTYP','RSP','VCK'];
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+let DB={}, curEl='May2026Gen', curState=null, lang='en', newsLang='en';
+
+// ── DATA FETCH ────────────────────────────────────────────────────────────
+async function loadJSON(){
+  try{
+    const r=await fetch('data.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    DB=d.elections||{};
+    document.getElementById('masterTs').textContent=d.generated_ist||d.generated_at||'—';
+    document.getElementById('eciTs').textContent=d.generated_ist||'';
+    document.getElementById('srcLabel').textContent='✓ LIVE — ECI via GitHub Actions';
+    document.getElementById('srcLabel').style.color='#22c55e';
+    renderAll();
+    updateTicker();
+  }catch(e){
+    document.getElementById('srcLabel').textContent='data.json load failed';
+    document.getElementById('srcLabel').style.color='#ef4444';
+  }
+}
+
+async function refresh(){
+  const s=document.getElementById('rfSpn');
+  s.classList.add('spin');
+  await loadJSON();
+  s.classList.remove('spin');
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+function renderAll(){
+  const ed=DB[curEl]; if(!ed) return;
+  renderStats(ed); renderTabs(ed); renderNat(ed); renderSnap(ed);
+  if(curState!==null) renderPanel(ed.states[curState]);
+}
+
+function renderStats(ed){
+  let tot=0,decl=0; const pt={};
+  ed.states.forEach(s=>{tot+=s.total;s.parties.forEach(p=>{const t=p.won+p.leading;decl+=t;pt[p.abbr]=(pt[p.abbr]||0)+t;});});
+  const lead=Object.entries(pt).sort((a,b)=>b[1]-a[1])[0];
+  const pct=tot?Math.round(decl/tot*100):0;
+  document.getElementById('statRow').innerHTML=`
+    <div class="stat"><div class="sv">${ed.states.length}</div><div class="sl">States</div><div class="ss">ACTIVE</div></div>
+    <div class="stat"><div class="sv">${tot.toLocaleString('en-IN')}</div><div class="sl">Total Seats</div></div>
+    <div class="stat"><div class="sv">${decl.toLocaleString('en-IN')}</div><div class="sl">Declared</div><div class="ss">${pct}% done</div></div>
+    <div class="stat"><div class="sv" style="font-size:14px;color:${pc(lead?.[0]||'')}">${lead?.[0]||'—'}</div><div class="sl">Leading Party</div><div class="ss">${lead?.[1]||0} seats</div></div>`;
+}
+
+function renderTabs(ed){
+  document.getElementById('tabsStrip').innerHTML=ed.states.map((s,i)=>{
+    const decl=s.parties.reduce((a,p)=>a+p.won+p.leading,0);
+    const pct=s.total?Math.round(decl/s.total*100):0;
+    const top=s.parties[0];
+    const isDone=pct>=99;
+    const hasWin=top&&(top.won+top.leading)>=s.majority;
+    const isOn=curState===i;
+    return `<div class="st${isOn?' on':''}" onclick="toggleState(${i})">
+      <div class="st-inner">
+        <div class="st-name">${s.name}</div>
+        <div class="st-meta">${s.counted}/${s.total} AC · ${pct}%</div>
+        <div class="st-lead" style="color:${top?pc(top.abbr):'var(--txt3)'}">${top?top.abbr+' '+(top.won+top.leading):''}</div>
+        <div style="display:flex;gap:4px;margin-top:3px">
+          <div class="st-chip ${isDone?'chip-done':'chip-live'}">${isDone?'FINAL':'LIVE'}</div>
+          ${hasWin?`<div class="st-chip chip-maj">MAJ</div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleState(idx){
+  const ed=DB[curEl]; if(!ed) return;
+  if(curState===idx){
+    // Second click — close panel, show nothing
+    curState=null;
+    document.getElementById('statePanel').style.display='none';
+    document.getElementById('statePanel').innerHTML='';
+    renderTabs(ed);
+    return;
+  }
+  curState=idx;
+  renderTabs(ed);
+  renderPanel(ed.states[idx]);
+}
+
+function renderPanel(s){
+  if(!s) return;
+  const panel=document.getElementById('statePanel');
+  panel.style.display='block';
+
+  const decl=s.parties.reduce((a,p)=>a+p.won+p.leading,0);
+  const pct=s.total?Math.round(decl/s.total*100):0;
+  const maxS=Math.max(...s.parties.map(p=>p.won+p.leading),1);
+  const top=s.parties[0];
+  const isDone=pct>=99;
+  const hasWin=top&&(top.won+top.leading)>=s.majority;
+
+  // SVG circle
+  const R=20,C=2*Math.PI*R;
+  const clr=isDone?'#22c55e':pct>70?'#f59e0b':'#0ea5e9';
+  const dash=C*(1-pct/100);
+
+  // Alliances
+  let nda=0,india=0,oth=0;
+  s.parties.forEach(p=>{const t=p.won+p.leading;if(NDA.includes(p.abbr))nda+=t;else if(INDIA.includes(p.abbr))india+=t;else oth+=t;});
+
+  const majPct=s.total?s.majority/s.total*100:50;
+  const leadPct=s.total?Math.min(((top?.won||0)+(top?.leading||0))/s.total*100,100):0;
+
+  panel.innerHTML=`<div class="sp-inner">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div>
+        <div style="font-size:18px;font-weight:700;letter-spacing:-.01em">${s.name}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--txt3);margin-top:2px">${DB[curEl]?.label||''}</div>
+      </div>
+      <div style="display:flex;gap:5px;align-items:center">
+        <div class="st-chip ${isDone?'chip-done':'chip-live'}" style="font-size:9px;padding:4px 9px">${isDone?'FINAL':'LIVE'}</div>
+        ${hasWin?`<div class="st-chip chip-maj" style="font-size:9px;padding:4px 9px">MAJORITY</div>`:''}
+        <button onclick="toggleState(${curState})" style="font-family:var(--mono);font-size:9px;color:var(--txt3);background:none;border:1px solid var(--bdr2);padding:4px 8px;cursor:pointer;border-radius:2px">✕ CLOSE</button>
+      </div>
+    </div>
+
+    <div class="prog-row">
+      <div class="prog-arc">
+        <svg class="psvg" viewBox="0 0 48 48">
+          <circle class="p-bg" cx="24" cy="24" r="${R}"/>
+          <circle class="p-fill" cx="24" cy="24" r="${R}" stroke="${clr}" stroke-dasharray="${C}" stroke-dashoffset="${dash}"/>
+        </svg>
+        <div class="p-lbl" style="color:${clr}">${pct}%</div>
+      </div>
+      <div class="prog-info">
+        <div class="pi-t">${s.counted} / ${s.total} Constituencies Counted</div>
+        <div class="pi-s">${s.total-s.counted} remaining · Majority: ${s.majority} seats · ${s.last_updated||''}</div>
+      </div>
+    </div>
+
+    ${(nda+india+oth)>0?`<div class="al-row">
+      ${nda>0?`<div class="al"><div class="al-n">NDA Alliance</div><div class="al-s" style="color:#f97316">${nda}</div><div class="al-sub">BJP + allies</div></div>`:''}
+      ${india>0?`<div class="al"><div class="al-n">INDIA Alliance</div><div class="al-s" style="color:#3b82f6">${india}</div><div class="al-sub">INC + allies</div></div>`:''}
+      ${oth>0?`<div class="al"><div class="al-n">Others</div><div class="al-s" style="color:#6b7280">${oth}</div><div class="al-sub">Regional/Ind</div></div>`:''}
+    </div>`:''}
+
+    <div class="pt-hdr">
+      <span>Party</span><span>Seat Bar</span><span>Total</span><span>Won</span><span>Lead</span>
+    </div>
+    ${s.parties.map(p=>{
+      const t=p.won+p.leading,w=maxS>0?Math.round(t/maxS*100):0,c=p.color||pc(p.abbr);
+      return `<div class="pt-row">
+        <div class="pt-name" style="color:${c}">${p.abbr}</div>
+        <div class="pt-bw"><div class="pt-bf" style="width:${w}%;background:${c}">${w>22?`<span class="pt-bl">${t}</span>`:''}</div></div>
+        <div class="pt-tot" style="color:${c}">${t}</div>
+        <div class="pt-w">${p.won>0?p.won:'-'}</div>
+        <div class="pt-l">${p.leading>0?p.leading:'-'}</div>
+      </div>`;
+    }).join('')}
+
+    <div class="maj-wrap">
+      <div class="maj-lbl">Majority Meter — ${s.majority} seats needed out of ${s.total}</div>
+      <div class="maj-track">
+        <div class="maj-fill" style="width:${Math.min(leadPct,100)}%"></div>
+        <div class="maj-needle" style="left:${majPct}%"></div>
+      </div>
+      <div class="maj-nums">
+        <span style="color:${top?pc(top.abbr):'var(--txt3)'}">${top?top.abbr+' '+(top.won+top.leading):''}</span>
+        <span>Majority: ${s.majority}</span>
+        <span>Total: ${s.total}</span>
+      </div>
+    </div>
+
+    <div style="margin-top:10px">
+      <a href="https://results.eci.gov.in" target="_blank" style="font-family:var(--mono);font-size:9px;color:var(--acc2);text-decoration:none;text-transform:uppercase;letter-spacing:.06em">↗ View on ECI Official Website</a>
+    </div>
+  </div>`;
+}
+
+function renderNat(ed){
+  const pt={};
+  ed.states.forEach(s=>s.parties.forEach(p=>{const t=p.won+p.leading;if(t>0){if(!pt[p.abbr])pt[p.abbr]={seats:0,color:p.color||pc(p.abbr)};pt[p.abbr].seats+=t;}}));
+  const sorted=Object.entries(pt).sort((a,b)=>b[1].seats-a[1].seats).slice(0,8);
+  const maxS=sorted[0]?.[1]?.seats||1;
+  document.getElementById('natChart').innerHTML=sorted.map(([n,d])=>`
+    <div class="nc-row">
+      <div class="nc-n" style="color:${d.color}">${n}</div>
+      <div class="nc-bar"><div class="nc-fill" style="width:${Math.round(d.seats/maxS*100)}%;background:${d.color}"></div></div>
+      <div class="nc-s" style="color:${d.color}">${d.seats}</div>
+    </div>`).join('')||'<div class="ph" style="padding:10px">No data</div>';
+}
+
+function renderSnap(ed){
+  let seats=0,decl=0;
+  ed.states.forEach(s=>{seats+=s.total;s.parties.forEach(p=>decl+=p.won+p.leading);});
+  document.getElementById('snapGrid').innerHTML=`
+    <div class="sc2"><div class="sv2">${ed.states.length}</div><div class="sl2">States</div></div>
+    <div class="sc2"><div class="sv2">${seats}</div><div class="sl2">Seats</div></div>
+    <div class="sc2"><div class="sv2">${decl}</div><div class="sl2">Declared</div><div class="ss2">${seats?Math.round(decl/seats*100):0}%</div></div>
+    <div class="sc2"><div class="sv2">${seats-decl}</div><div class="sl2">Pending</div></div>`;
+}
+
+function updateTicker(){
+  const ed=DB[curEl]; if(!ed||!ed.states) return;
+  let parts=['⚡ INDIA ELECTION LIVE'];
+  ed.states.forEach(s=>{
+    const top3=s.parties.slice(0,3).map(p=>`${p.abbr} ${p.won+p.leading}`).join(' · ');
+    parts.push(`${s.name}: ${top3}`);
+  });
+  parts.push('Source: ECI — results.eci.gov.in');
+  const html=parts.map((p,i)=>i===0?`<span class="ti">${p}</span>`:`<span class="ti-sep">|</span><span class="ti">${p}</span>`).join('');
+  document.getElementById('tickerTrack').innerHTML=html+html;
+}
+
+// ── CONTROLS ──────────────────────────────────────────────────────────────
+function setEl(el,key){
+  document.querySelectorAll('.nv').forEach(n=>n.classList.remove('on'));
+  el.classList.add('on');
+  curEl=key; curState=null;
+  document.getElementById('statePanel').style.display='none';
+  document.getElementById('statePanel').innerHTML='';
+  renderAll();
+}
+
+function setLang(l,btn){
+  lang=l;
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  // Sync news lang
+  setNewsLang(l, document.getElementById('nl-'+l));
+}
+
+function setNewsLang(l,btn){
+  newsLang=l;
+  document.querySelectorAll('.nlbtn').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  loadNews();
+}
+
+// ── NEWS — Google News RSS (real verified sources) ─────────────────────────
+function newsQuery(){
+  const q=document.getElementById('si').value.trim();
+  if(q) return q;
+  if(newsLang==='hi') return 'भारत चुनाव परिणाम 2026 विधानसभा';
+  if(newsLang==='gu') return 'ભારત ચૂંટણી પરિણામ 2026 વિધાનસભા';
+  return 'India election results 2026 assembly';
+}
+
+function gnParams(){
+  if(newsLang==='hi') return 'hl=hi&gl=IN&ceid=IN:hi';
+  if(newsLang==='gu') return 'hl=gu&gl=IN&ceid=IN:gu';
+  return 'hl=en-IN&gl=IN&ceid=IN:en';
+}
+
+function timeAgo(d){
+  const m=Math.round((Date.now()-d)/60000);
+  if(isNaN(m)||m<0) return '';
+  if(m<60) return m+'m ago';
+  if(m<1440) return Math.round(m/60)+'h ago';
+  return Math.round(m/1440)+'d ago';
+}
+
+function parseGoogleRSS(xml){
+  const items=[];
+  try{
+    const doc=new DOMParser().parseFromString(xml,'application/xml');
+    const nodes=[...doc.querySelectorAll('item')];
+    nodes.slice(0,20).forEach(node=>{
+      const raw=(node.querySelector('title')?.textContent||'').replace(/<!\[CDATA\[|\]\]>/g,'').trim();
+      // Google format: "Title - Source Name"
+      const dash=raw.lastIndexOf(' - ');
+      const title=dash>0?raw.slice(0,dash).trim():raw;
+      const source=dash>0?raw.slice(dash+3).trim():'News';
+      const link=(node.querySelector('link')?.nextSibling?.nodeValue||node.querySelector('guid')?.textContent||'').trim();
+      const descRaw=(node.querySelector('description')?.textContent||'').replace(/<!\[CDATA\[|\]\]>/g,'').replace(/<[^>]+>/g,'').replace(/&[a-z]+;/g,' ').trim();
+      const pub=node.querySelector('pubDate')?.textContent||'';
+      if(title&&title.length>5){
+        items.push({title,source,link:link||'https://news.google.com',desc:descRaw.slice(0,150),time:pub?timeAgo(new Date(pub)):''});
+      }
+    });
+  }catch(e){}
+  return items;
+}
+
+async function fetchGNews(q){
+  const url=`https://news.google.com/rss/search?q=${encodeURIComponent(q)}&${gnParams()}`;
+  const proxies=[
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+  ];
+  for(const proxy of proxies){
+    try{
+      const r=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+      if(!r.ok) continue;
+      let xml='';
+      try{const j=await r.json();xml=j.contents||j.data||'';}
+      catch{xml=await r.text();}
+      if(xml&&(xml.includes('<item>')||xml.includes('<entry>'))){
+        const items=parseGoogleRSS(xml);
+        if(items.length>=2) return items;
+      }
+    }catch{}
+  }
+  return [];
+}
+
+async function loadNews(){
+  const box=document.getElementById('newsBox');
+  const q=newsQuery();
+  box.innerHTML=`<div class="ph" style="padding:12px;font-size:11px">Loading ${newsLang==='hi'?'हिंदी':newsLang==='gu'?'ગુજરાતી':'English'} news...</div>`;
+
+  let items=await fetchGNews(q);
+
+  // If <3 results, try broader query
+  if(items.length<3){
+    const fallbackQ=newsLang==='hi'?'चुनाव परिणाम 2026':newsLang==='gu'?'ચૂંટણી પરિણામ 2026':'India election 2026';
+    const more=await fetchGNews(fallbackQ);
+    const seen=new Set(items.map(i=>i.title));
+    more.forEach(i=>{if(!seen.has(i.title)){items.push(i);seen.add(i.title);}});
+  }
+
+  if(items.length>=2){
+    box.innerHTML=items.slice(0,15).map(it=>`
+      <div class="ni" onclick="window.open('${it.link}','_blank')">
+        <div class="ni-top">
+          <span class="ni-src">${it.source}</span>
+          <span class="ni-tag">✓ Verified</span>
+          <span class="ni-time">${it.time}</span>
+        </div>
+        <div class="ni-title">${it.title}</div>
+        ${it.desc?`<div class="ni-snip">${it.desc}</div>`:''}
+      </div>`).join('');
+    return;
+  }
+
+  // Last fallback: Wikipedia in selected language
+  try{
+    const wl=newsLang==='hi'?'hi':newsLang==='gu'?'gu':'en';
+    const r=await fetch(`https://${wl}.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*&srlimit=8&srprop=snippet`);
+    const d=await r.json();
+    const ws=d.query?.search||[];
+    box.innerHTML=ws.length?ws.map(s=>`
+      <div class="ni" onclick="window.open('https://${wl}.wikipedia.org/wiki/${encodeURIComponent(s.title)}','_blank')">
+        <div class="ni-top"><span class="ni-src">Wikipedia</span><span class="ni-tag">✓</span></div>
+        <div class="ni-title">${s.title}</div>
+        <div class="ni-snip">${(s.snippet||'').replace(/<[^>]+>/g,'').slice(0,140)}</div>
+      </div>`).join('')
+      :`<div class="ph" style="padding:12px">No news found — try different keywords</div>`;
+  }catch(e){
+    box.innerHTML=`<div class="ph" style="padding:12px;color:var(--red)">News load failed: ${e.message}</div>`;
+  }
+}
+
+function qs(q){document.getElementById('si').value=q;loadNews();}
+document.getElementById('si').addEventListener('keydown',e=>{if(e.key==='Enter')loadNews();});
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+loadJSON();
+loadNews();
+setInterval(loadJSON,60000);
+setInterval(()=>loadNews(),300000);
+</script>
+</body>
+</html>
