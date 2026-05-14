@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-14 08:54 UTC",
-  "generated_ist": "08:54 AM, 14 May 2026",
+  "generated_at": "2026-05-14 11:06 UTC",
+  "generated_ist": "11:06 AM, 14 May 2026",
   "elections": {
     "May2026Gen": {
       "label": "Assembly Elections — May 2026",
@@ -154,57 +154,65 @@
         {
           "name": "Assam",
           "total": 126,
-          "counted": 25,
+          "counted": 126,
           "majority": 64,
-          "last_updated": "09:24 AM, 04/05/2026",
+          "last_updated": "",
           "parties": [
             {
               "abbr": "BJP",
-              "full": "Bharatiya Janata Party",
-              "won": 0,
-              "leading": 16,
-              "total": 16,
+              "full": "Bharatiya Janata Party - BJP",
+              "won": 82,
+              "leading": 0,
+              "total": 82,
               "color": "#f97316"
             },
             {
-              "abbr": "BOPF",
-              "full": "Bodoland Peoples Front",
-              "won": 0,
-              "leading": 3,
-              "total": 3,
-              "color": "#8b5cf6"
-            },
-            {
-              "abbr": "AGP",
-              "full": "Asom Gana Parishad",
-              "won": 0,
-              "leading": 2,
-              "total": 2,
-              "color": "#65a30d"
-            },
-            {
               "abbr": "INC",
-              "full": "Indian National Congress",
-              "won": 0,
-              "leading": 2,
-              "total": 2,
+              "full": "Indian National Congress - INC",
+              "won": 19,
+              "leading": 0,
+              "total": 19,
               "color": "#3b82f6"
             },
             {
-              "abbr": "ASMJTYP",
-              "full": "Assam Jatiya Parishad",
-              "won": 0,
-              "leading": 1,
-              "total": 1,
-              "color": "#f59e0b"
+              "abbr": "BOPF",
+              "full": "Bodoland Peoples Front - BOPF",
+              "won": 10,
+              "leading": 0,
+              "total": 10,
+              "color": "#0891b2"
+            },
+            {
+              "abbr": "AGP",
+              "full": "Asom Gana Parishad - AGP",
+              "won": 10,
+              "leading": 0,
+              "total": 10,
+              "color": "#65a30d"
             },
             {
               "abbr": "AIUDF",
-              "full": "All India United Democratic Front",
-              "won": 0,
-              "leading": 1,
-              "total": 1,
+              "full": "All India United Democratic Front - AIUDF",
+              "won": 2,
+              "leading": 0,
+              "total": 2,
               "color": "#c026d3"
+            },
+            {
+              "abbr": "RJRD",
+              "full": "Raijor Dal - RJRD",
+              "won": 2,
+              "leading": 0,
+              "total": 2,
+              "color": "#6b7280"
+            },
+            {
+              "abbr": "AITC",
+              "full": "All India Trinamool Congress - AITC",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#7c3aed"
             }
           ]
         },
