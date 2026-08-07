@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-07 15:31 UTC",
-  "generated_ist": "03:31 PM, 07 Aug 2026",
+  "generated_at": "2026-08-07 16:25 UTC",
+  "generated_ist": "04:25 PM, 07 Aug 2026",
   "elections": {
     "May2026Gen": {
       "label": "Assembly Elections — May 2026",
@@ -10,86 +10,102 @@
           "total": 234,
           "counted": 234,
           "majority": 118,
-          "last_updated": "04/05/2026",
+          "last_updated": "",
           "parties": [
             {
               "abbr": "TVK",
-              "full": "Tamilaga Vettri Kazhagam",
-              "won": 1,
-              "leading": 106,
-              "total": 107,
+              "full": "Tamilaga Vettri Kazhagam - TVK",
+              "won": 108,
+              "leading": 0,
+              "total": 108,
               "color": "#7c3aed"
             },
             {
               "abbr": "DMK",
-              "full": "Dravida Munnetra Kazhagam",
-              "won": 3,
-              "leading": 56,
+              "full": "Dravida Munnetra Kazhagam - DMK",
+              "won": 59,
+              "leading": 0,
               "total": 59,
               "color": "#b91c1c"
             },
             {
               "abbr": "ADMK",
-              "full": "All India Anna Dravida Munnetra Kazhagam",
-              "won": 0,
-              "leading": 47,
+              "full": "All India Anna Dravida Munnetra Kazhagam - ADMK",
+              "won": 47,
+              "leading": 0,
               "total": 47,
               "color": "#16a34a"
             },
             {
               "abbr": "INC",
-              "full": "Indian National Congress",
-              "won": 1,
-              "leading": 4,
+              "full": "Indian National Congress - INC",
+              "won": 5,
+              "leading": 0,
               "total": 5,
               "color": "#3b82f6"
             },
             {
               "abbr": "PMK",
-              "full": "Pattali Makkal Katchi",
-              "won": 0,
-              "leading": 4,
+              "full": "Pattali Makkal Katchi - PMK",
+              "won": 4,
+              "leading": 0,
               "total": 4,
               "color": "#d97706"
             },
             {
-              "abbr": "BJP",
-              "full": "Bharatiya Janata Party",
-              "won": 0,
-              "leading": 3,
-              "total": 3,
-              "color": "#f97316"
-            },
-            {
               "abbr": "IUML",
-              "full": "Indian Union Muslim League",
-              "won": 0,
-              "leading": 2,
+              "full": "Indian Union Muslim League - IUML",
+              "won": 2,
+              "leading": 0,
               "total": 2,
               "color": "#0891b2"
             },
             {
-              "abbr": "VCK",
-              "full": "Viduthalai Chiruthaigal Katchi",
-              "won": 0,
-              "leading": 2,
-              "total": 2,
-              "color": "#be185d"
-            },
-            {
               "abbr": "CPI",
-              "full": "Communist Party of India",
-              "won": 0,
-              "leading": 2,
+              "full": "Communist Party of India - CPI",
+              "won": 2,
+              "leading": 0,
               "total": 2,
               "color": "#ef4444"
             },
             {
-              "abbr": "OTH",
-              "full": "Others",
-              "won": 0,
-              "leading": 3,
-              "total": 3,
+              "abbr": "VCK",
+              "full": "Viduthalai Chiruthaigal Katchi - VCK",
+              "won": 2,
+              "leading": 0,
+              "total": 2,
+              "color": "#be185d"
+            },
+            {
+              "abbr": "CPI(M)",
+              "full": "Communist Party of India (Marxist) - CPI(M)",
+              "won": 2,
+              "leading": 0,
+              "total": 2,
+              "color": "#dc2626"
+            },
+            {
+              "abbr": "BJP",
+              "full": "Bharatiya Janata Party - BJP",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#f97316"
+            },
+            {
+              "abbr": "DMDK",
+              "full": "Desiya Murpokku Dravida Kazhagam - DMDK",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#6b7280"
+            },
+            {
+              "abbr": "AMMKMNKZ",
+              "full": "Amma Makkal Munnettra Kazagam - AMMKMNKZ",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
               "color": "#6b7280"
             }
           ]
@@ -99,53 +115,53 @@
           "total": 294,
           "counted": 293,
           "majority": 148,
-          "last_updated": "04/05/2026",
+          "last_updated": "",
           "parties": [
             {
               "abbr": "BJP",
-              "full": "Bharatiya Janata Party",
-              "won": 20,
-              "leading": 182,
-              "total": 202,
+              "full": "Bharatiya Janata Party - BJP",
+              "won": 207,
+              "leading": 0,
+              "total": 207,
               "color": "#f97316"
             },
             {
               "abbr": "AITC",
-              "full": "All India Trinamool Congress",
-              "won": 8,
-              "leading": 77,
-              "total": 85,
+              "full": "All India Trinamool Congress - AITC",
+              "won": 80,
+              "leading": 0,
+              "total": 80,
               "color": "#7c3aed"
             },
             {
               "abbr": "INC",
-              "full": "Indian National Congress",
-              "won": 0,
-              "leading": 2,
+              "full": "Indian National Congress - INC",
+              "won": 2,
+              "leading": 0,
               "total": 2,
               "color": "#3b82f6"
             },
             {
               "abbr": "AJUP",
-              "full": "Aam Janata Unnayan Party",
-              "won": 0,
-              "leading": 2,
+              "full": "Aam Janata Unnayan party - AJUP",
+              "won": 2,
+              "leading": 0,
               "total": 2,
               "color": "#0891b2"
             },
             {
               "abbr": "CPI(M)",
-              "full": "Communist Party India Marxist",
-              "won": 0,
-              "leading": 1,
+              "full": "Communist Party of India (Marxist) - CPI(M)",
+              "won": 1,
+              "leading": 0,
               "total": 1,
               "color": "#dc2626"
             },
             {
               "abbr": "AISF",
-              "full": "All India Secular Front",
-              "won": 0,
-              "leading": 1,
+              "full": "All India Secular Front - AISF",
+              "won": 1,
+              "leading": 0,
               "total": 1,
               "color": "#ef4444"
             }
@@ -221,51 +237,59 @@
           "total": 140,
           "counted": 140,
           "majority": 71,
-          "last_updated": "04/05/2026",
+          "last_updated": "",
           "parties": [
             {
               "abbr": "INC",
-              "full": "Indian National Congress",
-              "won": 58,
-              "leading": 5,
+              "full": "Indian National Congress - INC",
+              "won": 63,
+              "leading": 0,
               "total": 63,
               "color": "#3b82f6"
             },
             {
               "abbr": "CPI(M)",
-              "full": "Communist Party India Marxist",
-              "won": 24,
-              "leading": 2,
+              "full": "Communist Party of India (Marxist) - CPI(M)",
+              "won": 26,
+              "leading": 0,
               "total": 26,
               "color": "#dc2626"
             },
             {
               "abbr": "IUML",
-              "full": "Indian Union Muslim League",
-              "won": 19,
-              "leading": 3,
+              "full": "Indian Union Muslim League - IUML",
+              "won": 22,
+              "leading": 0,
               "total": 22,
               "color": "#0891b2"
             },
             {
               "abbr": "CPI",
-              "full": "Communist Party of India",
-              "won": 7,
-              "leading": 1,
+              "full": "Communist Party of India - CPI",
+              "won": 8,
+              "leading": 0,
               "total": 8,
               "color": "#ef4444"
             },
             {
               "abbr": "KEC",
-              "full": "Kerala Congress",
-              "won": 6,
-              "leading": 1,
+              "full": "Kerala Congress - KEC",
+              "won": 7,
+              "leading": 0,
               "total": 7,
-              "color": "#d97706"
+              "color": "#0e7490"
+            },
+            {
+              "abbr": "IND",
+              "full": "Independent - IND",
+              "won": 4,
+              "leading": 0,
+              "total": 4,
+              "color": "#6b7280"
             },
             {
               "abbr": "RSP",
-              "full": "Revolutionary Socialist Party",
+              "full": "Revolutionary Socialist Party - RSP",
               "won": 3,
               "leading": 0,
               "total": 3,
@@ -273,18 +297,42 @@
             },
             {
               "abbr": "BJP",
-              "full": "Bharatiya Janata Party",
+              "full": "Bharatiya Janata Party - BJP",
               "won": 3,
               "leading": 0,
               "total": 3,
               "color": "#f97316"
             },
             {
-              "abbr": "IND",
-              "full": "Independent",
-              "won": 3,
-              "leading": 1,
-              "total": 4,
+              "abbr": "RJD",
+              "full": "Rashtriya Janata Dal - RJD",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#c026d3"
+            },
+            {
+              "abbr": "RMPOI",
+              "full": "Revolutionary Marxist Party of India - RMPOI",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#6b7280"
+            },
+            {
+              "abbr": "KEC(J)",
+              "full": "Kerala Congress (Jacob) - KEC(J)",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#6b7280"
+            },
+            {
+              "abbr": "CMPKSC",
+              "full": "Communist Marxist Party Kerala State Committee - CMPKSC",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
               "color": "#6b7280"
             }
           ]
@@ -292,56 +340,80 @@
         {
           "name": "Puducherry",
           "total": 30,
-          "counted": 25,
+          "counted": 30,
           "majority": 16,
-          "last_updated": "04/05/2026",
+          "last_updated": "",
           "parties": [
             {
               "abbr": "AINRC",
-              "full": "All India N.R. Congress",
-              "won": 9,
-              "leading": 1,
-              "total": 10,
-              "color": "#f59e0b"
-            },
-            {
-              "abbr": "BJP",
-              "full": "Bharatiya Janata Party",
-              "won": 2,
-              "leading": 3,
-              "total": 5,
-              "color": "#f97316"
+              "full": "All India N.R. Congress - AINRC",
+              "won": 12,
+              "leading": 0,
+              "total": 12,
+              "color": "#7c2d12"
             },
             {
               "abbr": "DMK",
-              "full": "Dravida Munnetra Kazhagam",
-              "won": 1,
-              "leading": 1,
-              "total": 2,
+              "full": "Dravida Munnetra Kazhagam - DMK",
+              "won": 5,
+              "leading": 0,
+              "total": 5,
               "color": "#b91c1c"
             },
             {
+              "abbr": "BJP",
+              "full": "Bharatiya Janata Party - BJP",
+              "won": 4,
+              "leading": 0,
+              "total": 4,
+              "color": "#f97316"
+            },
+            {
+              "abbr": "IND",
+              "full": "Independent - IND",
+              "won": 3,
+              "leading": 0,
+              "total": 3,
+              "color": "#6b7280"
+            },
+            {
+              "abbr": "TVK",
+              "full": "Tamilaga Vettri Kazhagam - TVK",
+              "won": 2,
+              "leading": 0,
+              "total": 2,
+              "color": "#7c3aed"
+            },
+            {
               "abbr": "INC",
-              "full": "Indian National Congress",
+              "full": "Indian National Congress - INC",
               "won": 1,
               "leading": 0,
               "total": 1,
               "color": "#3b82f6"
             },
             {
+              "abbr": "LJK",
+              "full": "Latchiya Jananayaka Katchi (LJK) - LJK",
+              "won": 1,
+              "leading": 0,
+              "total": 1,
+              "color": "#6b7280"
+            },
+            {
               "abbr": "ADMK",
-              "full": "All India Anna Dravida Munnetra Kazhagam",
+              "full": "All India Anna Dravida Munnetra Kazhagam - ADMK",
               "won": 1,
               "leading": 0,
               "total": 1,
               "color": "#16a34a"
             },
             {
-              "abbr": "OTH",
-              "full": "Others",
+              "abbr": "NYMK",
+              "full": "Neyam Makkal Kazhagam - NYMK",
               "won": 1,
-              "leading": 5,
-              "total": 6,
+              "leading": 0,
+              "total": 1,
               "color": "#6b7280"
             }
           ]
